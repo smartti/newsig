@@ -231,7 +231,6 @@
     echo $pane->startPane('pane');
     echo $pane->startPanel('Material', 'panel1');
     ?>
-
     <ol type="1">
         <li>Tipo de vivienda<br/>
             <input type="radio" id="firstQuestion1" name="id_dg_tipo_vivienda" value="31" <?php echo ($this->familia->id_dg_tipo_vivienda == '31') ? 'checked' : ''; ?> /> <label for="firstQuestion1">¿Casa independiente?</label><br/>
