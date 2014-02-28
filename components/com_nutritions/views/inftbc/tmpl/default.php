@@ -74,26 +74,25 @@ function validaNum(e){
                     <label></label>
                     <input type="button" class="btnPrint" name="btnPrint" id="btnPrint" value="Imprimir" onclick="javascript:window.print()" />
                 </p>
-                 <section class="tabs">
+                <section class="tabs">
                         <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
-		        <label for="tab-1" class="tab-label-1">About</label>
+		        <label for="tab-1" class="tab-label-1">Actividades 1</label>
                         
                         <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2" />
-		        <label for="tab-2" class="tab-label-2">Services</label>
+		        <label for="tab-2" class="tab-label-2">Actividades 2</label>
 
+                        <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3"/>
+		        <label for="tab-3" class="tab-label-3">Actividades 3</label>
                         
+                        <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4" />
+		        <label for="tab-4" class="tab-label-4">Bacteriológicos</label>
                         <div class="clear-shadow"></div>
 			
 		        <div class="content">
 			   <div class="content-1">
-						 <div class="clear-shadow"></div>
+			      <div class="clear-shadow"></div>
                                 <table id="gradient-style" summary="tabla_actividades">
-
-
                                     <thead>
-                                        <tr>
-                                            <th scope="col" colspan="8">A. ACTIVIDADES</th>
-                                        </tr>
                                         <tr>
 
                                             <th scope="col" width="80%">A. DETECCION Y DIAGNOSTICO DE CASOS</th>
@@ -101,7 +100,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -109,14 +108,14 @@ function validaNum(e){
 
                                     <tbody>
                                         <tr>    
-                                            <td>A1.S.R. Esperados = Atenciones en > 15 años x 0.05</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">A1.S.R. Esperados = Atenciones en > 15 años x 0.05</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
                                             <td>A2.S.R. Identificados</td>
@@ -148,13 +147,13 @@ function validaNum(e){
                                         </tr>
                                         <tr>
                                             <td class="n2">A5.   Baciloscopías de Diagnóstico esperadas (A1 x 2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
                                             <td>A6.   Baciloscopías de Diagnóstico Total</td>
@@ -217,14 +216,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr> 						
                                         <tr>
-                                            <td>A12. Nº de Pruebas de Sensibilidad realizadas	</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">A12. Nº de Pruebas de Sensibilidad realizadas	</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
                                             <td>A12.1 Nº de Pruebas de Sensibilidad Rápidas (H y R)</td>
@@ -255,31 +254,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>Total de Casos Nuevos (B1+B2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">Total de Casos Nuevos (B1+B2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
-                                            <td>B1. TB Pulmonar Total (B1.1 +B1.2 + B1.3 + B1.4)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">B1. TB Pulmonar Total (B1.1 +B1.2 + B1.3 + B1.4)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr><td>        B1.1 TB Pulmonar frotis positivo.</td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_14a" id="nu_14a"  onKeypress="return validaNum(event)"/></td>
@@ -320,14 +319,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr>  
                                         <tr>
-                                            <td>B2. TB Extrapulmonar (B2.1 +B2.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">B2. TB Extrapulmonar (B2.1 +B2.2)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr>
                                             <td>B2.1 Con confirmación bacteriológica o histopatológica</td>
@@ -358,31 +357,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>RECAIDAS (C1 + C2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">RECAIDAS (C1 + C2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
-                                            <td>C1. Recaidas Pulmonar (C1.1 + C1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">C1. Recaidas Pulmonar (C1.1 + C1.2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
                                             <td>C1.1 TB Pulmonar frotis positivo</td>
@@ -423,31 +422,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>Abandonos Recuperados (D1+D2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">Abandonos Recuperados (D1+D2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
-                                            <td>D1. Abandonos recuperados pulmonar (D1.1+D1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">D1. Abandonos recuperados pulmonar (D1.1+D1.2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
                                             <td>      D1.1 TB Pulmonar frotis positivo</td>
@@ -480,7 +479,11 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                     </tbody>
-
+                                </table>
+                           </div>
+			   <div class="content-2">
+			      <div class="clear-shadow"></div>
+                                <table id="gradient-style" summary="tabla_actividades">
                                     <thead>                
                                         <tr>
                                             <th scope="col">E. FRACASOS</th>
@@ -488,7 +491,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -513,7 +516,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -538,7 +541,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -603,21 +606,21 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>H1. Contactos Esperados (Morbilidad x 4)</td>
-                                            <td></td>
-                                            <td></td> 
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">H1. Contactos Esperados (Morbilidad x 4)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td> 
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>    
                                             <td>H2. Contactos Censados</td>
@@ -668,7 +671,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -743,7 +746,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -830,7 +833,11 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                     </tbody>
-
+                                </table>
+                           </div>
+			   <div class="content-3">
+			      <div class="clear-shadow"></div>
+                                <table id="gradient-style" summary="tabla_actividades">
                                     <thead>                
                                         <tr>
                                             <th scope="col">K.  TAMIZAJE DE VIH EN PACIETNES CON TB</th>
@@ -838,7 +845,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -908,7 +915,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>                            
+                                            <th scope="col">60+ años</th>                            
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -953,7 +960,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1008,7 +1015,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1054,7 +1061,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1079,7 +1086,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1110,7 +1117,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1130,7 +1137,8 @@ function validaNum(e){
 
                                 </table> 
                              </div>
-                             <div class="content-2">
+                             <div class="content-4">
+                              <div class="clear-shadow"></div>
                                 <table id="gradient-style_f2" summary="CASOS NUEVOS DE TUBERCULOSIS">
                                     <thead>                
                                         <tr>
@@ -1138,7 +1146,7 @@ function validaNum(e){
                                             <th colspan="19" scope="col">GRUPOS DE EDADES SEGÚN SEXO</th>
                                         </tr>                                    
                                         <tr>
-                                            <th scope="col" width="50%">S.  CASOS NUEVOS DE TUBERCULOSIS</th>
+                                            <th scope="col">S.  CASOS NUEVOS DE TUBERCULOSIS</th>
                                             <th colspan="2" scope="col">0-4 años</th>
                                             <th colspan="2" scope="col">5-14 años</th>
                                             <th colspan="2" scope="col">15-24 años</th>
@@ -1381,12 +1389,10 @@ function validaNum(e){
                                             <td></td>
 
                                         </tr>
-                                    </tbody>
-
-                                    </section>
+                                    </tbody>                                    
                                 </table>
-
                              </div>                         
-             </div>
+                       </div>
+                </section>
     </div>
 </form>
