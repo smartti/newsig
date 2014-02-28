@@ -1138,7 +1138,7 @@ function validaNum(e){
                                             <th colspan="19" scope="col">GRUPOS DE EDADES SEGÚN SEXO</th>
                                         </tr>                                    
                                         <tr>
-                                            <th scope="col">S.  CASOS NUEVOS DE TUBERCULOSIS</th>
+                                            <th scope="col" width="50%">S.  CASOS NUEVOS DE TUBERCULOSIS</th>
                                             <th colspan="2" scope="col">0-4 años</th>
                                             <th colspan="2" scope="col">5-14 años</th>
                                             <th colspan="2" scope="col">15-24 años</th>
