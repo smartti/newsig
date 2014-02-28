@@ -7,12 +7,12 @@
 class informetbc extends JTable
 {
     /** @var integer */
-    var $id_tbc = null;
-//    var $cod_2000 = null;
-//    var $nu_dni = null;
-//    var $nu_ano = null;
-//    var $nu_mes = null;
-    var $nu_00a = null;
+    var $id_tbc   = null;
+    var $cod_2000 = null;
+    var $nu_dni   = null;
+    var $nu_ano   = null;
+    var $nu_mes   = null;
+    var $nu_00a   = null;
 //    var $nu_00b = null;
 //    var $nu_00c = null;
 //    var $nu_00d = null;
@@ -489,6 +489,8 @@ class informetbc extends JTable
 //    var $nu_79n = null;
 //    var $nu_79o = null;
 //    var $nu_79p = null;
+     var $id_persona_encuestador = null;
+     
 
     
     function informetbc(& $db) {

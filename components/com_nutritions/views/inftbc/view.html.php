@@ -16,9 +16,10 @@ class NutritionsViewInftbc extends JView {
         $inftbc = & $this->get('Data');
         $results = array();
         $document = JFactory::getDocument();
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/bsn.AutoSuggest_2.1.3.js');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
-        $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/archivo.css');
-        $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/table.css');
+        $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
+        
 
 
         $this->assignRef('inftbc', $inftbc);
