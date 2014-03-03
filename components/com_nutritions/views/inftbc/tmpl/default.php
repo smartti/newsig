@@ -28,25 +28,32 @@ function validaNum(e){
 </style>
 <form id="frmPctNuevo" name="frmPctNuevo" method="post" action="nuevo.php" onsubmit="GrabarDatos(); return false;">
     <div class="container">
-                <p><label>cod_2000<br />
-                        <input class="text" maxlength="3" type="text" name="cod_2000" id="cod_2000" onblur="validateCode();"/>
-                        <span id="codeValidation" style="font-weight: bold; color: red; display: none;">C&oacute;digo inv&aacute;lido!</span>
-                    </label>
-                </p>
-                <p>
-                    <label>DNI<br />
-                        <input class="text" maxlength="3" type="text" name="nu_dni" maxlength="8" id="nu_dni" onKeypress="return validaNum(event)"/>
-                    </label>
-                </p>
-                <p>
+        <div>
+             <fieldset>
+                    <legend>Acciones</legend>
+           
+                    <input type="submit" name="submit" id="button" value="Enviar" />
+                    <label></label>
+                    <input type="button" class="cancelar" name="cancelar" id="cancelar" value="Cancelar" onclick="Cancelar()" />
+                    <label></label>
+                    <input type="button" class="btnPrint" name="btnPrint" id="btnPrint" value="Imprimir" onclick="javascript:window.print()" />
+             </fieldset>
+             
+        </div>
+       
+        <div class="elegant-aero">
+                        <input style="font-size: 10px;"  placeholder="Personal de Salud" type="text" name="encuestador" id="encuestador" size="60" maxlength="250" value="<?php echo $this->inftbc->encuestador_name; ?>" required/>
+                        <input type="hidden" name="id_persona_encuestador" id="id_persona_encuestador" value="<?php echo $this->inftbc->nu_dni; ?>"/>    
+                        <input class="text_area" style="font-size: 10px;" placeholder="Establecimiento de Salud" type="text" name="establec" id="establec" size="100" maxlength="250" value="<?php echo $this->inftbc->establec_name; ?>" required/>
+                        <input type="hidden" name="cod_2000" id="cod_2000" value="<?php echo $this->inftbc->cod_2000; ?>"/>
                     <select name="nu_ano" id="nu_ano">
-                        <option value="2013" selected="selected">2013</option>
+                        <option selected="selected" class="select_vacio">Elige Año</option>
                         <option value="2014">2014</option>
+                        <!--<option value="2015">2015</option>-->
                     </select>
-                </p>
-                <p>
                     <select name="nu_mes" id="nu_mes">
-                        <option value="1" selected="selected">Enero</option>
+                        <option selected="selected" class="select_vacio">Elige Mes</option>
+                        <option value="1">Enero</option>
                         <option value="2">Febrero</option>
                         <option value="3">Marzo</option>
                         <option value="4">Abril</option>
@@ -58,42 +65,41 @@ function validaNum(e){
                         <option value="10">Octubre</option>
                         <option value="11">Noviembre</option>
                         <option value="12">Diciembre</option>
-
-
                     </select>
-                </p>
-                <p>
-                    <label>ATC<br />
-                        <input type="text" name="nu_00a"  id="nu_00a" onKeypress="return validaNum(event)"/>                        
-                    </label>
-                </p>
-                <p>
-                    <input type="submit" name="submit" id="button" value="Enviar" disabled="disabled" />
-                    <label></label>
-                    <input type="button" class="cancelar" name="cancelar" id="cancelar" value="Cancelar" onclick="Cancelar()" />
-                    <label></label>
-                    <input type="button" class="btnPrint" name="btnPrint" id="btnPrint" value="Imprimir" onclick="javascript:window.print()" />
-                </p>
-                 <section class="tabs">
+             
+        </div>
+        
+                <section class="tabs">
                         <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
-		        <label for="tab-1" class="tab-label-1">About</label>
+		        <label for="tab-1" class="tab-label-1">Actividades 1</label>
                         
                         <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2" />
-		        <label for="tab-2" class="tab-label-2">Services</label>
+		        <label for="tab-2" class="tab-label-2">Actividades 2</label>
 
+                        <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3"/>
+		        <label for="tab-3" class="tab-label-3">Actividades 3</label>
                         
+                        <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4" />
+		        <label for="tab-4" class="tab-label-4">Casos Nuevos</label>
                         <div class="clear-shadow"></div>
 			
 		        <div class="content">
 			   <div class="content-1">
-						 <div class="clear-shadow"></div>
+			      <div class="clear-shadow"></div>
                                 <table id="gradient-style" summary="tabla_actividades">
-
-
                                     <thead>
                                         <tr>
-                                            <th scope="col" colspan="8">A. ACTIVIDADES</th>
+                                            <th  style="background: #F2CA85;">Total de Atenciones en Mayores de 15 años</th>
+<!--                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>-->
+                                            <th colspan="7" style="background: #F2CA85;"><input type="text" maxlength="6" style="width:64px;" placeholder="ATC" name="nu_00a"  id="nu_00a" onKeypress="return validaNum(event)"/></th>
+                                            <!--<th></th>-->
                                         </tr>
+                                    </thead>
+                                    <thead>
                                         <tr>
 
                                             <th scope="col" width="80%">A. DETECCION Y DIAGNOSTICO DE CASOS</th>
@@ -101,7 +107,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -147,7 +153,7 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td class="n2">A5.   Baciloscopías de Diagnóstico esperadas (A1 x 2)</td>
+                                            <td>A5.   Baciloscopías de Diagnóstico esperadas (A1 x 2)</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -217,14 +223,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr> 						
                                         <tr>
-                                            <td>A12. Nº de Pruebas de Sensibilidad realizadas	</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">A12. Nº de Pruebas de Sensibilidad realizadas	</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
                                             <td>A12.1 Nº de Pruebas de Sensibilidad Rápidas (H y R)</td>
@@ -255,31 +261,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>Total de Casos Nuevos (B1+B2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">Total de Casos Nuevos (B1+B2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
-                                            <td>B1. TB Pulmonar Total (B1.1 +B1.2 + B1.3 + B1.4)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">B1. TB Pulmonar Total (B1.1 +B1.2 + B1.3 + B1.4)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr><td>        B1.1 TB Pulmonar frotis positivo.</td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_14a" id="nu_14a"  onKeypress="return validaNum(event)"/></td>
@@ -320,14 +326,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr>  
                                         <tr>
-                                            <td>B2. TB Extrapulmonar (B2.1 +B2.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">B2. TB Extrapulmonar (B2.1 +B2.2)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr>
                                             <td>B2.1 Con confirmación bacteriológica o histopatológica</td>
@@ -358,31 +364,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>RECAIDAS (C1 + C2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">RECAIDAS (C1 + C2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
-                                            <td>C1. Recaidas Pulmonar (C1.1 + C1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">C1. Recaidas Pulmonar (C1.1 + C1.2)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr>
                                             <td>C1.1 TB Pulmonar frotis positivo</td>
@@ -405,14 +411,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>C2 Recaídas Extrapulmonares</td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_22a" id="nu_22a"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_22b" id="nu_22b"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_22c" id="nu_22c"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_22d" id="nu_22d"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_22e" id="nu_22e"  onKeypress="return validaNum(event)"/></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">C2 Recaídas Extrapulmonares</td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_22a" id="nu_22a"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_22b" id="nu_22b"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_22c" id="nu_22c"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_22d" id="nu_22d"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_22e" id="nu_22e"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                     </tbody>
 
@@ -423,31 +429,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>Abandonos Recuperados (D1+D2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">Abandonos Recuperados (D1+D2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>
-                                            <td>D1. Abandonos recuperados pulmonar (D1.1+D1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">D1. Abandonos recuperados pulmonar (D1.1+D1.2)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr>
                                             <td>      D1.1 TB Pulmonar frotis positivo</td>
@@ -470,17 +476,21 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>D2. Abandonos Recuperados  Extrapulmonares</td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_25a" id="nu_25a"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_25b" id="nu_25b"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_25c" id="nu_25c"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_25d" id="nu_25d"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_25e" id="nu_25e"  onKeypress="return validaNum(event)"/></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3">D2. Abandonos Recuperados  Extrapulmonares</td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_25a" id="nu_25a"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_25b" id="nu_25b"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_25c" id="nu_25c"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_25d" id="nu_25d"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"><input class="text" maxlength="3" type="text" name="nu_25e" id="nu_25e"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                     </tbody>
-
+                                </table>
+                           </div>
+			   <div class="content-2">
+			      <div class="clear-shadow"></div>
+                                <table id="gradient-style" summary="tabla_actividades">
                                     <thead>                
                                         <tr>
                                             <th scope="col">E. FRACASOS</th>
@@ -488,7 +498,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -513,7 +523,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -538,7 +548,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -603,7 +613,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -668,7 +678,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -743,31 +753,31 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>J1. Total de Casos TB-VIH (J1.1+J1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">J1. Total de Casos TB-VIH (J1.1+J1.2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>    
-                                            <td> J1.1 Total de casos TB / VIH  Nuevos (J1.1.1 + J1.1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3"> J1.1 Total de casos TB / VIH  Nuevos (J1.1.1 + J1.1.2)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr>    
                                             <td> J1.1.1 TB Pulmonar</td>
@@ -790,14 +800,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                         <tr>    
-                                            <td> J1.2 Total de casos TB/VIH  antes tratados (J1.2.1 + J1.2.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n3"> J1.2 Total de casos TB/VIH  antes tratados (J1.2.1 + J1.2.2)</td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
+                                            <td class="n3"></td>
                                         </tr>
                                         <tr>    
                                             <td>J1.2.1 TB Pulmonar</td>
@@ -820,17 +830,21 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                         <tr>    
-                                            <td>J2. Total de casos TB/VIH que reciben TARGA </td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_48a" id="nu_48a"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_48b" id="nu_48b"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_48c" id="nu_48c"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_48d" id="nu_48d"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_48e" id="nu_48e"  onKeypress="return validaNum(event)"/></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">J2. Total de casos TB/VIH que reciben TARGA </td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_48a" id="nu_48a"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_48b" id="nu_48b"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_48c" id="nu_48c"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_48d" id="nu_48d"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_48e" id="nu_48e"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                     </tbody>
-
+                                </table>
+                           </div>
+			   <div class="content-3">
+			      <div class="clear-shadow"></div>
+                                <table id="gradient-style" summary="tabla_actividades">
                                     <thead>                
                                         <tr>
                                             <th scope="col">K.  TAMIZAJE DE VIH EN PACIETNES CON TB</th>
@@ -838,7 +852,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -908,21 +922,21 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>                            
+                                            <th scope="col">60+ años</th>                            
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>M1. N° de Gestantes con TB (M1.1+ M1.2 )</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">M1. N° de Gestantes con TB (M1.1+ M1.2 )</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>    
                                             <td>M1.1 TB Pulmonar</td>
@@ -953,21 +967,21 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td>N1. N°de trabajadores del EESS con TB (N1.1+ N1.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">N1. N°de trabajadores del EESS con TB (N1.1+ N1.2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>    
                                             <td>N1.1 TB Pulmonar</td>
@@ -990,14 +1004,14 @@ function validaNum(e){
                                             <td></td>
                                         </tr>
                                         <tr>    
-                                            <td>N2. N° de trabajadores con TB-MDR confirmado</td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_57a" id="nu_57a"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_57b" id="nu_57b"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_57c" id="nu_57c"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_57d" id="nu_57d"  onKeypress="return validaNum(event)"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_57e" id="nu_57e"  onKeypress="return validaNum(event)"/></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">N2. N° de trabajadores con TB-MDR confirmado</td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_57a" id="nu_57a"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_57b" id="nu_57b"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_57c" id="nu_57c"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_57d" id="nu_57d"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"><input class="text" maxlength="3" type="text" name="nu_57e" id="nu_57e"  onKeypress="return validaNum(event)"/></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
                                         </tr>
                                     </tbody>
 
@@ -1008,21 +1022,21 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>    
-                                            <td> O1. Total de casos con TB / DIABETES (O1.1+ O1.2 )</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2"> O1. Total de casos con TB / DIABETES (O1.1+ O1.2 )</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
 
                                         </tr>
                                         <tr>    
@@ -1054,7 +1068,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1079,18 +1093,11 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>    
-                                            <td>Q1 N             </thead>
-                                    <tbody>
-                                        <tr>    
-                                            <td>Q1 N             </thead>
-                                    <tbody>
                                         <tr>    
                                             <td>Q1 N° de Pacientes fallecidos durante tratamiento</td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_61a" id="nu_61a"  onKeypress="return validaNum(event)"/></td>
@@ -1110,7 +1117,7 @@ function validaNum(e){
                                             <th scope="col">12-17 años</th>
                                             <th scope="col">18-29 años</th>
                                             <th scope="col">30-59 años</th>
-                                            <th scope="col">60a+años</th>
+                                            <th scope="col">60+ años</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">%</th>
                                         </tr>
@@ -1130,7 +1137,8 @@ function validaNum(e){
 
                                 </table> 
                              </div>
-                             <div class="content-2">
+                             <div class="content-4">
+                              <div class="clear-shadow"></div>
                                 <table id="gradient-style_f2" summary="CASOS NUEVOS DE TUBERCULOSIS">
                                     <thead>                
                                         <tr>
@@ -1175,27 +1183,27 @@ function validaNum(e){
                                     </thead>                    
                                     <tbody>
                                         <tr>    
-                                            <td>S1. TB Pulmonar Total (S1.1 +S1.2 + S1.3)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>                            
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">S1. TB Pulmonar Total (S1.1 +S1.2 + S1.3)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>                            
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
 
-                                            <td></td>
+                                            <td class="n2"></td>
 
                                         </tr>
                                         <tr>    
@@ -1232,7 +1240,7 @@ function validaNum(e){
 
                                         </tr>
                                         <tr>    
-                                            <td>S1.2 TB Pulmonar frotis negativo</td>
+                                            <td>S1.2 TB Pulmonar frotis negativo cultivo positivo</td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_76a" id="nu_76a"  onKeypress="return validaNum(event)"/></td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_76b" id="nu_76b"  onKeypress="return validaNum(event)"/></td>
 
@@ -1264,7 +1272,39 @@ function validaNum(e){
 
                                         </tr>
                                         <tr>    
-                                            <td>S1.3 TB Pulmonar sin frotis de esputo</td>
+                                            <td>S1.3 TB Pulmonar frotis negativo cultivo negativo</td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76a" id="nu_76a"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76b" id="nu_76b"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76c" id="nu_76c"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76d" id="nu_76d"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76e" id="nu_76e"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76f" id="nu_76f"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76g" id="nu_76g"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76h" id="nu_76h"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76i" id="nu_76i"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76j" id="nu_76j"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76k" id="nu_76k"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76l" id="nu_76l"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76m" id="nu_76m"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76n" id="nu_76n"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76o" id="nu_76o"  onKeypress="return validaNum(event)"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_76p" id="nu_76p"  onKeypress="return validaNum(event)"/></td>
+
+                                            <td></td>
+                                            <td></td>
+
+                                            <td></td>
+
+                                        </tr>
+                                        <tr>    
+                                            <td>S1.4 TB Pulmonar sin frotis de esputo</td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_77a" id="nu_77a"  onKeypress="return validaNum(event)"/></td>
                                             <td><input class="text" maxlength="3" type="text" name="nu_77b" id="nu_77b"  onKeypress="return validaNum(event)"/></td>
 
@@ -1296,27 +1336,27 @@ function validaNum(e){
 
                                         </tr>
                                         <tr>    
-                                            <td>S2. TB Extrapulmonar (B2.1 +B2.2)</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>                            
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="n2">S2. TB Extrapulmonar (B2.1 +B2.2)</td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>                            
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
+                                            <td class="n2"></td>
 
-                                            <td></td>
+                                            <td class="n2"></td>
                                         </tr>
                                         <tr>    
                                             <td>S2.1 Con confirmación bacteriológica o histopatológica</td>
@@ -1381,12 +1421,41 @@ function validaNum(e){
                                             <td></td>
 
                                         </tr>
-                                    </tbody>
-
-                                    </section>
+                                    </tbody>                                    
                                 </table>
-
                              </div>                         
-             </div>
+                       </div>
+                </section>
+                
+                <script type="text/javascript">
+                    var options = {
+                        script:"index.php?option=com_nutritions&controller=person&task=getEncuestador&",
+                        varname:"encuestadorName",
+                        json:true,
+                        shownoresults:false,
+                        maxresults:6,
+                        callback: function (obj) { document.getElementById('id_persona_encuestador').value = obj.id; }
+                    };
+                    var as_json = new bsn.AutoSuggest('encuestador', options);
+                </script>
+                
+                <script type="text/javascript">
+                    var options_es = {
+                        script:"index.php?option=com_nutritions&controller=establec&task=getEstablec&",
+                        varname:"establecName",
+                        json:true,
+                        shownoresults:false,
+                        maxresults:6,
+                        callback: function (obj) { document.getElementById('cod_2000').value = obj.id; }
+                    };
+                    var as_json_es = new bsn.AutoSuggest('establec', options_es);
+                </script> 
+                
     </div>
+    
+    <input type="hidden" name="option" value="com_nutritions" />
+    <input type="hidden" name="cid[]" value="<?php echo $this->inftbc->id_tbc; ?>" />
+    <input type="hidden" name="id_tbc" value="<?php echo $this->inftbc->id_tbc; ?>" />
+    <input type="hidden" name="task" id="task" value="edit" />
+    <input type="hidden" name="controller" value="inftbc" />
 </form>

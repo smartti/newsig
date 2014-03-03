@@ -314,8 +314,8 @@ class NutritionsModelPerson extends JModel
     }
     
     public function getEncuestadores($name, $limit) {
-        $query = "SELECT id_entidad, CONCAT_WS(' ',tx_apellido_paterno, tx_apellido_materno, tx_nombres) AS encuestador_name FROM persona 
-                  WHERE id_dg_tipo_persona = '191' AND CONCAT_WS(' ',tx_apellido_paterno, tx_apellido_materno, tx_nombres) LIKE '%$name%' LIMIT $limit";
+        $query = "SELECT id_entidad, CONCAT_WS(' ',tx_nro_documento,' - ',tx_apellido_paterno, tx_apellido_materno, tx_nombres) AS encuestador_name FROM persona 
+                  WHERE id_dg_tipo_persona = '191' AND CONCAT_WS(' ',tx_nro_documento,' - ',tx_apellido_paterno, tx_apellido_materno, tx_nombres) LIKE '%$name%' LIMIT $limit";
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
         return $results;
