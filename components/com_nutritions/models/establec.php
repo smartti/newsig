@@ -143,8 +143,8 @@ class NutritionsModelEstablec extends JModel {
     }
 
     public function getEstablecimientos($name, $limit, $usuario) {
-        $query = "SELECT cod_2000, CONCAT_WS(' - ',DESC_DISA, DESC_RED, DESC_ESTAB,cod_2000) AS establec_name FROM 0001_geresall_renaes 
-                  WHERE (cod_ue=$usuario or cod_2000=$usuario) and CONCAT_WS(' - ',DESC_DISA, DESC_RED, DESC_ESTAB,cod_2000) LIKE '%$name%' LIMIT $limit";
+        $query = "SELECT cod_2000, CONCAT_WS('-',DESC_DISA, DESC_RED, DESC_ESTAB,cod_2000) AS establec_name FROM 0001_geresall_renaes 
+                  WHERE (cod_ue=$usuario or cod_2000=$usuario) and CONCAT_WS(' - ',DESC_DISA, DESC_RED, DESC_ESTAB,cod_2000) LIKE UPPER('%$name%') LIMIT $limit";
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
         return $results;
