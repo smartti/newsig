@@ -1,16 +1,5 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 
-<script type="text/javascript">
-function validaNum(e){ 
-    var tecla = e.keyCode || e.which;
-    if (tecla==8 || tecla==9) return true; //Tecla de retroceso (para poder borrar) o pasar al siguiente campo
-    patron = /\d/; // Solo acepta números 
-    te = String.fromCharCode(tecla); 
-    return patron.test(te);  
-}
-</script>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
-	
 <style type="text/css">
     .input-wrapper {
         padding: .2em;
@@ -26,13 +15,13 @@ function validaNum(e){
         background-color: transparent;
     }
 </style>
-<form id="frmPctNuevo" name="frmPctNuevo" method="post" action="nuevo.php" onsubmit="GrabarDatos(); return false;">
+<form id="frmPct" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="frmPct" >
     <div class="container">
         <div>
              <fieldset>
                     <legend>Acciones</legend>
            
-                    <input type="submit" name="submit" id="button" value="Enviar" />
+                    <input type="button" id="btngrabar" value="Grabar" onclick="validateFields();"/>
                     <label></label>
                     <input type="button" class="cancelar" name="cancelar" id="cancelar" value="Cancelar" onclick="Cancelar()" />
                     <label></label>
@@ -40,16 +29,27 @@ function validaNum(e){
              </fieldset>
              
         </div>
+    
        
         <div class="elegant-aero">
-                        <input style="font-size: 10px;" placeholder="Personal de Salud" type="text" name="encuestador" id="encuestador" size="60" maxlength="250" value="<?php echo $this->inftbc->encuestador_name; ?>" required/>
-                        <input type="hidden" name="id_persona_encuestador" id="id_persona_encuestador" value="<?php echo $this->inftbc->nu_dni; ?>"/>    
-                        <input style="font-size: 10px;" placeholder="Establecimiento de Salud" type="text" name="establec" id="establec" size="100" maxlength="250" value="<?php echo $this->inftbc->establec_name; ?>" required/>
-                        <input type="hidden" name="cod_2000" id="cod_2000" value="<?php echo $this->inftbc->cod_2000; ?>"/>
-                    <select name="nu_ano" id="nu_ano">
+                        <input style="font-size: 10px;" placeholder="Personal de Salud" type="text" name="encuestador" id="encuestador" size="60" maxlength="250" value="<?php echo $this->inftbc->encuestador_name; ?>" required autofocus/>
+                        <input type="hidden" name="nu_dni" id="nu_dni" value="<?php echo $this->inftbc->nu_dni; ?>" required autofocus/>
+                        <input style="font-size: 10px;" placeholder="Establecimiento de Salud" type="text" name="establec" id="establec" size="100" maxlength="250" value="<?php echo $this->inftbc->establec_name; ?>" required autofocus/>
+                        <input type="hidden" name="cod_2000" id="cod_2000" value="<?php echo $this->inftbc->cod_2000; ?>" required autofocus>
+                        <table>
+                            <tr>
+                                 <td><?php echo $this->lists['resultado_anho']; ?></td>
+                            </tr>
+                            <tr>
+                                 <td><?php echo $this->lists['resultado_mes']; ?></td>
+                            </tr>
+                        </table>
+
+                        
+<!--                    <select name="nu_ano" id="nu_ano">
                         <option selected="selected" class="select_vacio">Elige Año</option>
                         <option value="2014">2014</option>
-                        <!--<option value="2015">2015</option>-->
+                        <option value="2015">2015</option>
                     </select>
                     <select name="nu_mes" id="nu_mes">
                         <option selected="selected" class="select_vacio">Elige Mes</option>
@@ -65,7 +65,7 @@ function validaNum(e){
                         <option value="10">Octubre</option>
                         <option value="11">Noviembre</option>
                         <option value="12">Diciembre</option>
-                    </select>
+                    </select>-->
              
         </div>
         
@@ -1391,29 +1391,29 @@ function validaNum(e){
                                         </tr>
                                         <tr>    
                                             <td>S2.2 Sin confirmación bacteriológica o histopatológica</td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79a" id="nu_80a"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80a; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79b" id="nu_80b"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80b; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80a" id="nu_80a"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80a; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80b" id="nu_80b"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80b; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79c" id="nu_80c"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80c; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79d" id="nu_80d"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80d; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80c" id="nu_80c"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80c; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80d" id="nu_80d"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80d; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79e" id="nu_80e"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80e; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79f" id="nu_80f"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80f; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80e" id="nu_80e"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80e; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80f" id="nu_80f"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80f; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79g" id="nu_80g"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80g; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79h" id="nu_80h"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80h; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80g" id="nu_80g"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80g; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80h" id="nu_80h"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80h; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79i" id="nu_80i"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80i; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79j" id="nu_80j"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80j; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80i" id="nu_80i"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80i; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80j" id="nu_80j"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80j; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79k" id="nu_80k"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80k; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79l" id="nu_80l"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80l; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80k" id="nu_80k"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80k; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80l" id="nu_80l"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80l; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79m" id="nu_80m"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80m; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79n" id="nu_80n"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80n; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80m" id="nu_80m"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80m; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80n" id="nu_80n"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80n; ?>"/></td>
 
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79o" id="nu_80o"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80o; ?>"/></td>
-                                            <td><input class="text" maxlength="3" type="text" name="nu_79p" id="nu_80p"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80p; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80o" id="nu_80o"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80o; ?>"/></td>
+                                            <td><input class="text" maxlength="3" type="text" name="nu_80p" id="nu_80p"  onKeypress="return validaNum(event)" value="<?php echo $this->inftbc->nu_80p; ?>"/></td>
 
                                             <td></td>
                                             <td></td>
@@ -1434,7 +1434,7 @@ function validaNum(e){
                         json:true,
                         shownoresults:false,
                         maxresults:6,
-                        callback: function (obj) { document.getElementById('id_persona_encuestador').value = obj.id; }
+                        callback: function (obj) { document.getElementById('nu_dni').value = obj.id; }
                     };
                     var as_json = new bsn.AutoSuggest('encuestador', options);
                 </script>

@@ -29,8 +29,11 @@ class NutritionsModelInftbc extends JModel
         
         // Load the data
         if (empty( $this->_data )) {
-            $query = "SELECT ig.id_tbc, ig.cod_2000, ig.nu_anho, ig.mes, ig.nu_00a
-                      FROM inf_tbc ig WHERE ig.id_tbc=".$this->_id;
+            $query = "SELECT CONCAT_WS(' ',P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres) AS encuestador_name,
+                      CONCAT_WS('-',r.DESC_DISA, r.DESC_RED, r.DESC_ESTAB, r.cod_2000) AS establec_name, ig.*
+                      FROM inf_tbc ig 
+                      LEFT JOIN persona AS P ON (ig.nu_dni = P.tx_nro_documento)
+                      INNER JOIN 0001_geresall_renaes r ON (ig.cod_2000 = r.cod_2000) WHERE ig.id_tbc=".$this->_id;
             //echo $query;
             $this->_db->setQuery( $query );
             $this->_data = $this->_db->loadObject();
@@ -40,7 +43,7 @@ class NutritionsModelInftbc extends JModel
             $this->_data->id_tbc = 0;
             $this->_data->nu_dni = null;
             $this->_data->cod_2000 = null;
-            $this->_data->nu_anho = null;
+            $this->_data->nu_ano = null;
             $this->_data->nu_mes = null;
             $this->_data->nu_00a = null;
             
@@ -449,6 +452,14 @@ class NutritionsModelInftbc extends JModel
             return false;
         }
         return $row->id_tbc;
-    }    
+    }
+    
+    public function getDetalleGeneral($idGeneral, $defaultId) {
+        $query = "SELECT id_detalle_general as value, tx_descripcion as text FROM detalle_general WHERE id_general = '$idGeneral' AND id_detalle_general != '$defaultId' ";
+        $this->_db->setQuery($query);
+        $resultado = $this->_db->loadObjectList();
+        return $resultado;
+    }
+    
 }
 ?>

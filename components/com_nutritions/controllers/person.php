@@ -55,7 +55,7 @@ class NutritionsControllerPerson extends NutritionsController
         echo "{\"results\": [";
         $arr = array();
         for ($i = 0; $i < count($results); $i++) {
-            $arr[] = "{\"id\": \"".$results[$i]->id_entidad."\", \"value\": \"".$results[$i]->encuestador_name."\", \"info\": \"\"}";
+            $arr[] = "{\"id\": \"".$results[$i]->tx_nro_documento."\", \"value\": \"".$results[$i]->encuestador_name."\", \"info\": \"\"}";
         }
         echo implode(", ", $arr);
         echo "]}";

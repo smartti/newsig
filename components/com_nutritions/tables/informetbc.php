@@ -505,7 +505,7 @@ class informetbc extends JTable
     var $nu_80n = null;
     var $nu_80o = null;
     var $nu_80p = null;
-     var $id_persona_encuestador = null;
+    var $id_persona_encuestador = null;
      
 
     
