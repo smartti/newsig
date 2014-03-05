@@ -6,18 +6,15 @@ function validaNum(e){
     return patron.test(te);  
 }
 
-
-    function validateFields(){
-        
-        
-       if(document.frmPct.cod_2000.value === "" || document.frmPct.nu_dni.value === "" || document.frmPct.nu_ano.value === "211" || document.frmPct.nu_mes.value === "211")
-       {
-            alert('Por favor ingrese datos de cabecera faltantes!');
-            return false;
-        }
-        document.getElementById('task').value = 'saveAction'; 
-        document.getElementById('frmPct').submit();
+function validateFields(){
+    if(document.frmPct.cod_2000.value === "" || document.frmPct.nu_dni.value === "" || document.frmPct.nu_ano.value === "211" || document.frmPct.nu_mes.value === "211")
+    {
+        alert('Por favor ingrese datos de cabecera faltantes!');
+        return false;
     }
+    document.getElementById('task').value = 'saveAction'; 
+    document.getElementById('frmPct').submit();
+}
 
 
 
