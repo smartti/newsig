@@ -20,6 +20,7 @@ class NutritionsModelEstablec extends JModel {
         // Set id and wipe data
         $user = & JFactory::getUser();
         $id = $user->username;
+        
         $this->_id = $id;
         $this->_data = null;
     }
@@ -27,17 +28,9 @@ class NutritionsModelEstablec extends JModel {
     function &getData() {
         // Load the data
         if (empty($this->_data)) {
-            $query = "SELECT e.cod_estab, e.desc_estab, e.cod_2000, e.tipoestab,
-                      e.cod_dpto, e.cod_prov, e.cod_dist, e.cod_disa, e.cod_red, e.cod_mic, e.clas, e.estado,
-		      u.id_departamento,u.id_provincia, u.id_distrito, u.ubigeo AS id_ubigeo,
-                      u.ubigeo_dpto,u.ubigeo_prov,u.ubigeo_dist,
- 		      r.desc_disa,r.desc_red, r.desc_micro
-                      FROM establec e 
-		      INNER JOIN 0002_geresall_ubigeo u 
-                      ON (e.COD_DPTO=u.COD_DPTO AND e.COD_PROV=u.COD_PROV AND e.COD_DIST=u.COD_DIST)
-    		      INNER JOIN 0001_geresall_renaes r 
- 		      ON (e.cod_2000=r.cod_2000)
-                      WHERE e.cod_2000=" . $this->_id;
+            $query = "SELECT i.*
+                      FROM entidad i		      
+                      WHERE i.cod_2000=" . $this->_id;
 
             $this->_db->setQuery($query);
             $this->_data = $this->_db->loadObject();
@@ -143,8 +136,8 @@ class NutritionsModelEstablec extends JModel {
     }
 
     public function getEstablecimientos($name, $limit, $usuario) {
-        $query = "SELECT cod_2000, CONCAT_WS('-',DESC_DISA, DESC_RED, DESC_ESTAB,cod_2000) AS establec_name FROM 0001_geresall_renaes 
-                  WHERE (cod_ue=$usuario or cod_2000=$usuario) and CONCAT_WS(' - ',DESC_DISA, DESC_RED, DESC_ESTAB,cod_2000) LIKE UPPER('%$name%') LIMIT $limit";
+        $query = "SELECT cod_2000, CONCAT_WS(' - ',cod_2000, DESC_Dpto, desc_prov, desc_dist, '|', desc_disa, DESC_RED, DESC_ESTAB) AS establec_name FROM entidad 
+                  WHERE (cod_ue='$usuario' or cod_2000='$usuario' or tx_usuario_creacion='$usuario') and CONCAT(cod_2000, DESC_Dpto, desc_prov, desc_dist, desc_disa, DESC_RED, DESC_ESTAB) LIKE UPPER('%$name%') LIMIT $limit";
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
         return $results;

@@ -12,6 +12,7 @@ class informetbc extends JTable
     var $nu_dni   = null;
     var $nu_ano   = null;
     var $nu_mes   = null;
+    var $nu_pob   = null;
     var $nu_00a   = null;
     var $nu_00b = null;
     var $nu_00c = null;

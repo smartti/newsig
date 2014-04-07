@@ -37,7 +37,7 @@ class NutritionsModelNutrition extends JModel
                       F.id_dg_resultado, F.id_dg_resultado2, F.id_dg_resultado3, F.un_habitaciones, F.in_cria_animales, D.un_hogares, D.un_hogar, CONCAT_WS(' ',P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres) AS encuestador_name,id_persona_encuestador 
                       FROM familia as F INNER JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
                       LEFT JOIN persona AS P ON (F.id_persona_encuestador = P.id_entidad)
-                      INNER JOIN vw_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)
+                      INNER JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)
                       WHERE F.id_familia=".$this->_id;
             
             $this->_db->setQuery( $query );
@@ -75,7 +75,12 @@ class NutritionsModelNutrition extends JModel
             $this->_data->un_altitud = NULL;
             $this->_data->tx_apellidos = NULL;
             $this->_data->nu_telf_fijo = NULL;
-            $this->_data->fe_visita = NULL;
+            $this->_data->fe_visita1 = NULL;
+            $this->_data->id_dg_resultado = NULL;
+            $this->_data->fe_visita2 = NULL;
+            $this->_data->id_dg_resultado2 = NULL;
+            $this->_data->fe_visita3 = NULL;
+            $this->_data->id_dg_resultado3 = NULL;
             $this->_data->numero_integrantes = NULL;
             $this->_data->poblacion_objetivo = NULL;
             $this->_data->poblacion_riesgo = NULL;
@@ -98,8 +103,9 @@ class NutritionsModelNutrition extends JModel
             $this->_data->tx_observacion_disposicion_basura = NULL;
             $this->_data->un_habitaciones = NULL;
             $this->_data->in_cria_animales = NULL;
+            $this->_data->id_persona_encuestador = NULL;
             $this->_data->encuestador_name = NULL;
-            
+            $this->_data->id_direccion_familia = NULL;
         }
         return $this->_data;
     }

@@ -44,7 +44,7 @@ class NutritionsControllerPerson extends NutritionsController
     
     public function getEncuestador() {
         $model = $this->getModel('person');
-        $limit = 10;
+        $limit = 30;
         $encuestadorName = JRequest::getVar('encuestadorName', NULL);
         $results = $model->getEncuestadores($encuestadorName, $limit);
         header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past

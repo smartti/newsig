@@ -88,9 +88,9 @@ class NutritionsModelPersons extends JModel {
         
         $where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
         
-        $query = "SELECT P.id_entidad, P.id_familia, V.id_departamento, V.id_provincia, V.id_distrito, V.departamento, V.provincia, V.distrito, P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres 
+        $query = "SELECT P.id_entidad, P.id_familia, V.id_departamento, V.id_provincia, V.id_distrito,V.ubigeo_dpto, V.ubigeo_prov, V.ubigeo_dist, P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres 
                   FROM persona P LEFT JOIN direccion_familia D ON (P.id_familia=D.id_familia) 
-                  LEFT JOIN vw_ubigeo V ON (D.id_ubigeo = V.id_ubigeo) {$where} GROUP BY P.id_entidad";
+                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo) {$where} GROUP BY P.id_entidad";
         
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();

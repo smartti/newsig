@@ -133,13 +133,13 @@ if(count($this->results) > 0 ){
                     <?php echo $row->tx_nombres; ?>
                 </td>
                 <td>
-                    <?php echo $row->Departamento; ?>
+                    <?php echo $row->ubigeo_dpto; ?>
                 </td>
                 <td>
-                    <?php echo $row->Provincia; ?>
+                    <?php echo $row->ubigeo_prov; ?>
                 </td>
                 <td>
-                    <?php echo $row->Distrito; ?>
+                    <?php echo $row->ubigeo_dist; ?>
                 </td>
                 <td>
                     <a href="<?php echo $link; ?>">Ver</a>

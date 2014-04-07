@@ -29,11 +29,11 @@ class NutritionsModelInftbc extends JModel
         
         // Load the data
         if (empty( $this->_data )) {
-            $query = "SELECT CONCAT_WS(' ',P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres) AS encuestador_name,
-                      CONCAT_WS('-',r.DESC_DISA, r.DESC_RED, r.DESC_ESTAB, r.cod_2000) AS establec_name, ig.*
+            $query = "SELECT CONCAT_WS(' ', p.tx_nro_documento,'-',p.tx_apellido_paterno, p.tx_apellido_materno, p.tx_nombres) AS encuestador_name,
+                      CONCAT_WS(' - ',r.cod_2000, r.DESC_Dpto, r.desc_prov, r.desc_dist, '|', r.desc_disa, r.DESC_RED, r.DESC_ESTAB) AS establec_name, ig.*
                       FROM inf_tbc ig 
-                      LEFT JOIN persona AS P ON (ig.nu_dni = P.tx_nro_documento)
-                      INNER JOIN 0001_geresall_renaes r ON (ig.cod_2000 = r.cod_2000) WHERE ig.id_tbc=".$this->_id;
+                      LEFT JOIN persona AS p ON (ig.nu_dni = p.tx_nro_documento)
+                      INNER JOIN entidad r ON (ig.cod_2000 = r.cod_2000) WHERE ig.id_tbc=".$this->_id;
             //echo $query;
             $this->_db->setQuery( $query );
             $this->_data = $this->_db->loadObject();
@@ -45,6 +45,8 @@ class NutritionsModelInftbc extends JModel
             $this->_data->cod_2000 = null;
             $this->_data->nu_ano = null;
             $this->_data->nu_mes = null;
+            $this->_data->nu_pob = null;
+            
             $this->_data->nu_00a = null;
             
             $this->_data->nu_01a = null;
@@ -159,6 +161,12 @@ class NutritionsModelInftbc extends JModel
             $this->_data->nu_27e = null;
             
             $this->_data->nu_28a = null;
+            $this->_data->nu_28b = null;
+            $this->_data->nu_28c = null;
+            $this->_data->nu_28d = null;
+            $this->_data->nu_28e = null;
+            
+            $this->_data->nu_29a = null;
             $this->_data->nu_29b = null;
             $this->_data->nu_29c = null;
             $this->_data->nu_29d = null;
@@ -231,6 +239,12 @@ class NutritionsModelInftbc extends JModel
             $this->_data->nu_46d = null;
             $this->_data->nu_46e = null;
             
+            $this->_data->nu_47a = null;
+            $this->_data->nu_47b = null;
+            $this->_data->nu_47c = null;
+            $this->_data->nu_47d = null;
+            $this->_data->nu_47e = null;
+            
             $this->_data->nu_48a = null;
             $this->_data->nu_48b = null;
             $this->_data->nu_48c = null;
@@ -260,7 +274,7 @@ class NutritionsModelInftbc extends JModel
             $this->_data->nu_53a = null;
             $this->_data->nu_53b = null;
             $this->_data->nu_53c = null;
-            $this->_data->nu_53 = null;
+            $this->_data->nu_53d = null;
             $this->_data->nu_53e = null;
             
             $this->_data->nu_54a = null;
@@ -459,6 +473,12 @@ class NutritionsModelInftbc extends JModel
         $this->_db->setQuery($query);
         $resultado = $this->_db->loadObjectList();
         return $resultado;
+    }
+    
+    public function removeInftbc($inftbcId) {
+        $query = "DELETE FROM inf_tbc WHERE id_tbc = '$inftbcId'";
+        $this->_db->setQuery($query);
+        $this->_db->query();
     }
     
 }

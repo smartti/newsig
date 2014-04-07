@@ -14,11 +14,7 @@ class NutritionsModelPerson extends JModel
         parent::__construct();
 
         $array = JRequest::getVar('cid', 0, '', 'array');
-        $this->setId((int) $array[0]);
-        
-        
-        
-        
+        $this->setId((int) $array[0]);       
     }
 
     function setId($id)
@@ -33,9 +29,11 @@ class NutritionsModelPerson extends JModel
         
         // Load the data
         if (empty( $this->_data )) {
-            $query = "SELECT P.*, R.id_riesgo, R.id_dg_riesgo, D.id_discapacidad, D.id_dg_discapacidad, CONCAT_WS(' - ',E.DESC_DISA, E.DESC_RED, E.DESC_ESTAB,E.cod_2000) AS establec_name
-                      FROM persona AS P LEFT JOIN riesgo AS R ON (P.id_entidad = R.id_entidad) LEFT JOIN discapacidad AS D ON (P.id_entidad = D.id_entidad)
-                      LEFT JOIN 0001_geresall_renaes AS E ON (P.cod_2000=E.cod_2000)
+            $query = "SELECT P.*, R.id_riesgo, R.id_dg_riesgo, D.id_discapacidad, D.id_dg_discapacidad, 
+                      CONCAT_WS(' - ',E.DESC_DISA, E.DESC_RED, E.DESC_ESTAB,E.cod_2000) AS establec_name
+                      FROM persona AS P LEFT JOIN riesgo AS R ON (P.id_entidad = R.id_entidad) 
+                      LEFT JOIN discapacidad AS D ON (P.id_entidad = D.id_entidad)
+                      LEFT JOIN entidad AS E ON (P.cod_2000=E.cod_2000)
                       WHERE P.id_entidad=".$this->_id;
             //echo $query;
             $this->_db->setQuery( $query );
@@ -77,6 +75,7 @@ class NutritionsModelPerson extends JModel
             $this->_data->in_desayuno_almuerzo_escolar = null;
             $this->_data->in_papilla_yapita = null;
             $this->_data->in_canasta_alimentaria = null;
+            $this->_data->in_cuna_mas = null;
             $this->_data->in_juntos = null;
             $this->_data->in_techo_propio = null;
             $this->_data->in_otros = null;
@@ -94,7 +93,9 @@ class NutritionsModelPerson extends JModel
             $this->_data->tx_usuario_modificacion = null;
             $this->_data->fe_modificacion = null;
             $this->_data->id_dg_riesgo = 163;
+            $this->_data->id_riesgo = null;
             $this->_data->id_dg_discapacidad = 157;
+            $this->_data->id_discapacidad = null;
             $this->_data->establec_name = NULL;
             
         }
@@ -197,6 +198,7 @@ class NutritionsModelPerson extends JModel
         if(!isset($data['in_desayuno_almuerzo_escolar']))$data['in_desayuno_almuerzo_escolar']=0;
         if(!isset($data['in_papilla_yapita']))$data['in_papilla_yapita']=0;
         if(!isset($data['in_canasta_alimentaria']))$data['in_canasta_alimentaria']=0;
+        if(!isset($data['in_cuna_mas']))$data['in_cuna_mas']=0;
         if(!isset($data['in_juntos']))$data['in_juntos']=0;
         if(!isset($data['in_techo_propio']))$data['in_techo_propio']=0;
         
@@ -314,8 +316,8 @@ class NutritionsModelPerson extends JModel
     }
     
     public function getEncuestadores($name, $limit) {
-        $query = "SELECT id_entidad,tx_nro_documento, CONCAT_WS(' ',tx_nro_documento,' - ',tx_apellido_paterno, tx_apellido_materno, tx_nombres) AS encuestador_name FROM persona 
-                  WHERE id_dg_tipo_persona = '191' AND CONCAT_WS(' ',tx_nro_documento,' - ',tx_apellido_paterno, tx_apellido_materno, tx_nombres) LIKE UPPER('%$name%') LIMIT $limit";
+        $query = "SELECT id_entidad,tx_nro_documento, CONCAT_WS(' ',tx_nro_documento,'-',tx_apellido_paterno, tx_apellido_materno, tx_nombres) AS encuestador_name FROM persona 
+                  WHERE id_dg_tipo_persona = '191' AND CONCAT_WS(' ',tx_nro_documento,'-',tx_apellido_paterno, tx_apellido_materno, tx_nombres) LIKE UPPER('%$name%') LIMIT $limit";
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
         return $results;

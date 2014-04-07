@@ -17,7 +17,9 @@ require_once (JPATH_COMPONENT.DS.'tables'.DS.'pregnants.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'establecimientos.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informegeneral.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informetbc.php');
-require_once (JPATH_COMPONENT.DS.'tables'.DS.'informePai.php');
+require_once (JPATH_COMPONENT.DS.'tables'.DS.'contacto.php');
+require_once (JPATH_COMPONENT.DS.'tables'.DS.'populations.php');
+
 
 // Require specific controller if requested
 if($controller = JRequest::getVar('controller')) {
