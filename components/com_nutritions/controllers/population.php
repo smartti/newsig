@@ -19,8 +19,7 @@ class NutritionsControllerPopulation extends NutritionsController
     }
     
     public function newAction() {
-        $this->setRedirect('index.php?option=com_nutritions&controller=population&view=population&task=edit&Itemid=3&cid[]=');
-                           
+        $this->setRedirect('index.php?option=com_nutritions&controller=population&view=population&task=edit&Itemid=3&cid[]=');                          
     }    
     
     function saveAction()

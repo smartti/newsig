@@ -78,7 +78,7 @@ class NutritionsControllerEstablec extends NutritionsController
         echo "{\"results\": [";
         $arr = array();
         for ($i = 0; $i < count($results); $i++) {
-            $arr[] = "{\"id\": \"".$results[$i]->cod_2000."\", \"value\": \"".$results[$i]->establec_name."\", \"info\": \"\"}";
+            $arr[] = "{\"id\": \"".$results[$i]->cod_2000."\", \"value\": \"".addslashes($results[$i]->establec_name)."\", \"info\": \"\"}";
         }
         echo implode(", ", $arr);
         echo "]}";
