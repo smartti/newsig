@@ -44,6 +44,15 @@ class NutritionsControllerInftbc extends NutritionsController
         $link = 'index.php?option=com_nutritions&controller=inftbc&view=inftbc&task=edit&Itemid=3&cid[]='.$resultStore;
         $this->setRedirect($link, $msg);
      }
+     
+       public function removeInftbc() {
+        $inftbcId = JRequest::getInt('inftbcId', NULL);
+        $model = $this->getModel('inftbc');
+        $model->removeInftbc($inftbcId);
+        $msg = 'Informe Removido!!!';
+        $link = 'index.php?option=com_nutritions&view=inftbcs&Itemid=5';
+        $this->setRedirect($link, $msg);
+    }
     
 }
 ?>

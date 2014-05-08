@@ -52,7 +52,8 @@
             </tr>
         </table>
     </fieldset>
-
+ 
+               
     <fieldset>
         <legend>Direccion de la Familia</legend>
         <table>

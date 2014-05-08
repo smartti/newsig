@@ -73,6 +73,8 @@ class personas extends JTable
     /** @var integer */
     var $in_canasta_alimentaria = null;
     /** @var integer */
+    var $in_cuna_mas = null;
+    /** @var integer */
     var $in_juntos = null;
     /** @var integer */
     var $in_techo_propio = null;
