@@ -40,7 +40,7 @@ class NutritionsModelPopulation extends JModel
             $this->_data->id_dg_anho = null;
             $this->_data->id_ubigeo = null;
             $this->_data->nu_total = null;
-            $this->_data->nu_men_5a = null;
+            $this->_data->nu_men_5a = null; //poblacion 
             $this->_data->tx_usuario_creacion = null;
             $this->_data->fe_creacion = null;
             $this->_data->tx_usuario_modificacion = null;
