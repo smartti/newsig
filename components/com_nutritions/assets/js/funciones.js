@@ -97,13 +97,26 @@ function verifyDelete($id_tbc){
      
         var answer = confirm ("Deseas ELIMINAR el registro?")
         if (answer){
-        window.location.href = 'index.php?option=com_nutritions&controller=inftbc&task=removeInftbc&inftbcId='+$id_tbc;
         alert ("Registro Eliminado");
+        window.location.href = 'index.php?option=com_nutritions&controller=inftbc&task=removeInftbc&inftbcId='+$id_tbc;        
         }
         else
         alert ("No eliminó el registro")
     
 }
+
+function verifyDelete_indhosp($id_indhosp){
+     
+        var answer = confirm ("Deseas ELIMINAR el registro?")
+        if (answer){
+        alert ("Registro Eliminado");
+        window.location.href = 'index.php?option=com_nutritions&controller=infindhosp&task=removeInfindhosp&infindhospId='+$id_indhosp;        
+        }
+        else
+        alert ("No eliminó el registro")
+    
+}
+
 
 function validateSearch(){
     if(document.adminForm.cod_2000.value === "")
@@ -116,4 +129,46 @@ function validateSearch(){
     document.getElementById('adminForm').submit();
 }
 
+function crear_discapacidad(){
+    
+    document.getElementById('disTask').value = 'addDiscapacidad'; 
+    document.getElementById('discapacidadForm').submit();
+}
 
+function verifyDelete_discapacidad($id_discapacidad,$id_entidad){
+    
+    
+        var answer = confirm ("Deseas ELIMINAR el registro?")
+        if (answer){
+        
+        alert ("Registro Eliminado")
+        window.location.href = 'index.php?option=com_nutritions&controller=person&task=deletediscapacidad&personId='+$id_entidad+'&Itemid=3&id='+$id_discapacidad;
+        //setTimeout( function() { alert('Registro Eliminado');}, 20000 ); 
+        
+        }
+        else
+        alert ("No eliminó el registro")   
+    
+}
+
+function crear_riesgo(){
+    
+    document.getElementById('rieTask').value = 'addRiesgo'; 
+    document.getElementById('riesgoForm').submit();
+}
+
+function verifyDelete_riesgo($id_riesgo,$id_entidad){
+    
+    
+        var answer = confirm ("Deseas ELIMINAR el registro?")
+        if (answer){
+        
+        alert ("Registro Eliminado")
+        window.location.href = 'index.php?option=com_nutritions&controller=person&task=deleteriesgo&personId='+$id_entidad+'&Itemid=3&id='+$id_riesgo;
+        //setTimeout( function() { alert('Registro Eliminado');}, 20000 ); 
+        
+        }
+        else
+        alert ("No eliminó el registro")   
+    
+}

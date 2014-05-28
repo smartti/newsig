@@ -21,13 +21,15 @@
         <table style="width: 100%;">
             <tr>
                 <td style="width: 25%;">
-                    <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction'; document.getElementById('adminForm').submit();"/>
+                    <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction';
+                            document.getElementById('adminForm').submit();"/>
                 </td>
                 <td>
                     &nbsp;
                 </td>
                 <td style="width: 25%;">
-                    <input type="button" value="Limpiar" onclick="javascript:document.getElementById('task').value = 'cleanAction'; document.getElementById('adminForm').submit();"/>
+                    <input type="button" value="Limpiar" onclick="javascript:document.getElementById('task').value = 'cleanAction';
+                            document.getElementById('adminForm').submit();"/>
                 </td>
                 <td style="width: 25%;">
                     <input type="button" value="Cancelar" onclick="javascript: history.go(-1);"/>
@@ -181,7 +183,7 @@
                         <legend>Datos del EE.SS donde se atiende</legend>
                         <table width="100%">
                             <tr>              
-                                
+
                             </tr>
                             <tr>
                                 <td>Renaes:</td>
@@ -212,29 +214,6 @@
                                 </td>
                             </tr>                          
 
-                            <tr>
-                                <td colspan="4">
-                                    <fieldset>
-                                        <legend>Selección para padrones</legend>                    <table>                      
-                                            <tr>
-                                                <td>Discapacidad:</td>
-                                                <td>
-                                                    <?php echo $this->lists['discapacidades']; ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Da&ntilde;os o Riesgos:</td>
-                                                <td>
-                                                    <?php echo $this->lists['riesgos']; ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </fieldset>
-                                </td>
-                            </tr>
-                            <tr>
-
-                            </tr>
                         </table>
                     </fieldset>
                 </td>
@@ -301,12 +280,14 @@
     </fieldset>
     <script type="text/javascript">
         var options = {
-            script:"index.php?option=com_nutritions&controller=establec&task=getEstablec&",
-            varname:"establecName",
-            json:true,
-            shownoresults:false,
-            maxresults:6,
-            callback: function (obj) { document.getElementById('cod_2000').value = obj.id; }
+            script: "index.php?option=com_nutritions&controller=establec&task=getEstablec&",
+            varname: "establecName",
+            json: true,
+            shownoresults: false,
+            maxresults: 6,
+            callback: function(obj) {
+                document.getElementById('cod_2000').value = obj.id;
+            }
         };
         var as_json = new bsn.AutoSuggest('establec', options);
     </script>
@@ -321,6 +302,139 @@
     <input type="hidden" name="controller" value="person" />
 </form>
 
+<table  width="100%">
+
+    <tr>
+        <td width="49%">
+            <fieldset>
+                <legend>Discapacidad&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_discapacidad();"></a></legend>
+                <form id="discapacidadForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="discapacidadForm">
+                    <div style="text-align: left;">
+
+                    </div>
+                    <input type="hidden" name="option" value="com_nutritions" />
+                    <input type="hidden" name="task" id="disTask" value="" />
+                    <input type="hidden" name="controller" value="person" />
+                    <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
+                </form>
+                <table  border="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="70%">                     
+                            </th>
+                            <th width="10%">
+                            </th>    
+                            <th width="10%">                    
+                            </th>
+                            <th width="10%">                    
+                            </th>
+                        </tr>		
+                    </thead>
+                    <?php
+                    if (count($this->discapacidadResults) > 0) {
+                        ?>
+                        <?php
+                        $k = 0;
+                        for ($i = 0, $n = count($this->discapacidadResults); $i < $n; $i++) {
+                            $row = &$this->discapacidadResults[$i];
+                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=discapacidad&view=discapacidad&task=edit&Itemid=3&cid[]=' . $row->id_discapacidad);
+                            $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=person&task=deletediscapacidad&personId={$this->persona->id_entidad}&Itemid=3&id=" . $row->id_discapacidad);
+                            ?>
+                            <tr>
+
+                                <td>
+                                    <?php echo $row->tx_descripcion; ?>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <a class="glyphicon glyphicon-pencil" href="<?php echo $showLink; ?>" />
+                                </td>
+                                <td>
+
+                                    <a class="glyphicon glyphicon-minus"  href="#" onclick="verifyDelete_discapacidad(<?php echo $row->id_discapacidad ?>,<?php echo $this->persona->id_entidad ?>);
+                                            return false;" />
+                                </td>
+
+
+                            </tr>
+                            <?php
+                            $k = 1 - $k;
+                        }
+                        ?>
+                        <?php
+                    }
+                    ?>
+                </table>
+
+            </fieldset>
+        </td>
+        <td width="2%"></td>
+        <td width="49%">
+            <fieldset>
+                <legend>Riesgo&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_riesgo();"></a></legend>
+                <form id="riesgoForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="riesgoForm">
+                    <div style="text-align: left;">
+
+                    </div>
+                    <input type="hidden" name="option" value="com_nutritions" />
+                    <input type="hidden" name="task" id="rieTask" value="" />
+                    <input type="hidden" name="controller" value="person" />
+                    <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
+                </form>
+                <table  border="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="70%">                     
+                            </th>
+                            <th width="10%">
+                            </th>    
+                            <th width="10%">                    
+                            </th>
+                            <th width="10%">                    
+                            </th>
+                        </tr>		
+                    </thead>
+                    <?php
+                    if (count($this->riesgoResults) > 0) {
+                        ?>
+                        <?php
+                        $k = 0;
+                        for ($i = 0, $n = count($this->riesgoResults); $i < $n; $i++) {
+                            $row = &$this->riesgoResults[$i];
+                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=riesgo&view=riesgo&task=edit&Itemid=3&cid[]=' . $row->id_riesgo);
+                            $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=person&task=deleteriesgo&personId={$this->persona->id_entidad}&Itemid=3&id=" . $row->id_riesgo);
+                            ?>
+                            <tr>
+
+                                <td>
+                                    <?php echo $row->tx_descripcion; ?>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <a class="glyphicon glyphicon-pencil" href="<?php echo $showLink; ?>" />
+                                </td>
+                                <td>
+
+                                    <a class="glyphicon glyphicon-minus"  href="#" onclick="verifyDelete_riesgo(<?php echo $row->id_riesgo ?>,<?php echo $this->persona->id_entidad ?>);
+                                            return false;" />
+                                </td>
+
+
+                            </tr>
+                            <?php
+                            $k = 1 - $k;
+                        }
+                        ?>
+                        <?php
+                    }
+                    ?>
+                </table>
+
+            </fieldset>
+        </td></tr>
+
+</table>
+
 <?php
 if ($this->persona->id_entidad > 0) {
     ?>
@@ -333,23 +447,25 @@ if ($this->persona->id_entidad > 0) {
                         <?php
                         if ($this->edad < 5) {
                             ?>
-                            <input type="button" name="btnChildActivity" value="Actividad Niño" onclick="javascript:document.getElementById('newTask').value = 'addChildActivity'; document.getElementById('activityForm').submit();" />
-                            <?php
-                        } else {
-                            echo "&nbsp;";
-                        }
-                        ?>
+                            <input type="button" name="btnChildActivity" value="Actividad Niño" onclick="javascript:document.getElementById('newTask').value = 'addChildActivity';
+                                    document.getElementById('activityForm').submit();" />
+                                   <?php
+                               } else {
+                                   echo "&nbsp;";
+                               }
+                               ?>
                     </td>
                     <td style="width: 50%; text-align: center;">
                         <?php
                         if ($this->persona->in_sexo != '1' && ( $this->edad >= 10 && $this->edad <= 50 )) {
                             ?>
-                            <input type="button" name="btnPregnantActivity" value="Actividad Gestante" onclick="javascript:document.getElementById('newTask').value = 'addPregnantActivity'; document.getElementById('activityForm').submit();" />
-                            <?php
-                        } else {
-                            echo "&nbsp;";
-                        }
-                        ?>
+                            <input type="button" name="btnPregnantActivity" value="Actividad Gestante" onclick="javascript:document.getElementById('newTask').value = 'addPregnantActivity';
+                                    document.getElementById('activityForm').submit();" />
+                                   <?php
+                               } else {
+                                   echo "&nbsp;";
+                               }
+                               ?>
                     </td>
                 </tr>
             </table>
@@ -541,4 +657,5 @@ if ($this->persona->id_entidad > 0) {
     <?php
 }
 ?>
+
 

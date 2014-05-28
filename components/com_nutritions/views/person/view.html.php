@@ -18,6 +18,11 @@ class NutritionsViewPerson extends JView {
         $document->addScript(JURI::base().'components/com_nutritions/assets/js/bsn.AutoSuggest_2.1.3.js');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/funciones.js');
+        
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/bootstrap.min.js');
+        
+        $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/bootstrap.min.css');
 
         $persona = & $this->get('Data');
         if($persona->fe_nacimiento){
@@ -48,9 +53,13 @@ class NutritionsViewPerson extends JView {
         $discapacidades = $this->get('Discapacidades');
         $childResults = array();
         $pregnantResults = array();
+        $discapacidadResults = array();
+        $riesgoResults = array();
         if( $persona->id_entidad ){
             $childResults = $model->getChildActivities($persona->id_entidad);
             $pregnantResults = $model->getPregnantActivities($persona->id_entidad);
+            $discapacidadResults = $model->getDiscapacidad($persona->id_entidad);
+            $riesgoResults = $model->getRiesgo($persona->id_entidad);
         }
         
         $parentescoArray[] = JHTML::_('select.option', '214', JText::_('- Seleccione -'));
@@ -130,6 +139,8 @@ class NutritionsViewPerson extends JView {
         $this->assignRef('persona', $persona);
         $this->assignRef('childResults', $childResults);
         $this->assignRef('pregnantResults', $pregnantResults);
+        $this->assignRef('discapacidadResults', $discapacidadResults);
+        $this->assignRef('riesgoResults', $riesgoResults);
         
         parent::display($tpl);
     }

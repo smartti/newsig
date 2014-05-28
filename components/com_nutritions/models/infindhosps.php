@@ -5,8 +5,7 @@ defined('_JEXEC') or die();
 
 jimport('joomla.application.component.model');
 
-class NutritionsModelInftbcs extends JModel {
-
+class NutritionsModelInfindhosps extends JModel {
     /**
      * Data array
      *
@@ -30,7 +29,7 @@ class NutritionsModelInftbcs extends JModel {
         $query = "SELECT CONCAT_WS(' ',P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres) AS encuestador_name,        
                   CONCAT_WS('-',r.DESC_DISA, r.DESC_RED, r.DESC_ESTAB, r.cod_2000) AS establec_name,
                   r.DESC_UE, r.DESC_DISA, r.DESC_RED, r.DESC_ESTAB, dg_a.tx_descripcion as ano, dg_m.tx_descripcion as mes, ig.*
-                  FROM inf_tbc ig 
+                  FROM inf_indhosp ig 
                   LEFT JOIN persona AS P ON (ig.nu_dni = P.tx_nro_documento)
                   LEFT JOIN entidad r ON (ig.cod_2000 = r.cod_2000)
                   LEFT join renaes_detalle rd on (rd.cod_estab=r.cod_estab)

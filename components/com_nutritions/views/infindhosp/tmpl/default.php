@@ -612,7 +612,7 @@
                             </tr>
                             <tr>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td><input class="text" maxlength="3" type="text" name="nu_027i" id="nu_027i"  onKeypress="return validaNum(event)" value="<?php echo $this->infindhosp->nu_027i; ?>"/></td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>

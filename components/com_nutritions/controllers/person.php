@@ -72,6 +72,38 @@ class NutritionsControllerPerson extends NutritionsController
         $msg = JText::_( 'Operacion cancelada' );
         $this->setRedirect( 'index.php?option=com_nutritions&view=persons&Itemid=3', $msg );
     }
-        
+    
+    
+    public function addDiscapacidad() {
+        $personId = JRequest::getVar('personId', NULL);
+        $link = "index.php?option=com_nutritions&controller=discapacidad&view=discapacidad&task=edit&personId={$personId}&Itemid=3&cid[]=";
+        $this->setRedirect($link);
+    }
+     
+    public function deleteDiscapacidad() {
+        $personId = JRequest::getInt('personId', NULL);
+        $discapacidadId = JRequest::getInt('id', NULL);
+        $model = $this->getModel('discapacidad');
+        $model->removeDiscapacidad($discapacidadId);
+        $msg = 'Discapacidad Removido!!!';
+        $link = 'index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]='.$personId;
+        $this->setRedirect($link, $msg);
+    }
+    
+    public function addRiesgo() {
+        $personId = JRequest::getVar('personId', NULL);
+        $link = "index.php?option=com_nutritions&controller=riesgo&view=riesgo&task=edit&personId={$personId}&Itemid=3&cid[]=";
+        $this->setRedirect($link);
+    }
+     
+    public function deleteRiesgo() {
+        $personId = JRequest::getInt('personId', NULL);
+        $riesgoId = JRequest::getInt('id', NULL);
+        $model = $this->getModel('riesgo');
+        $model->removeRiesgo($riesgoId);
+        $msg = 'Riesgo Removido!!!';
+        $link = 'index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]='.$personId;
+        $this->setRedirect($link, $msg);
+    }    
 }
 ?>

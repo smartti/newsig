@@ -419,7 +419,7 @@ class informeindhosp extends JTable
 #    var $nu_044i = null;
 
     function informeindhosp(& $db) {        
-        parent::__construct('inf_indhosp', '$id_indhosp', $db);
+        parent::__construct('inf_indhosp', 'id_indhosp', $db);
     }
 
 }
