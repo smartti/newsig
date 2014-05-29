@@ -43,7 +43,7 @@
         <table>
             <tr>
                 <td style="width: 50%;" valign="top">
-                    <table>
+                    <table style=" border-collapse: separate;  border-spacing:  12px 3px;">
                         <tr>
                             <td>Familia ID:</td>
                             <td>
@@ -65,7 +65,7 @@
                         <tr>
                             <td>Sexo:</td>
                             <td>
-                                <?php echo JHTML::_('select.booleanlist', 'in_sexo', '', $this->persona->in_sexo, 'Masculino', 'Femenino'); ?>
+                                <?php echo JHTML::_('select.booleanlist', 'in_sexo', '', $this->persona->in_sexo, 'Masculino', 'Femenino&nbsp;&nbsp;&nbsp;&nbsp;'); ?>
                             </td>
                         </tr>
                         <tr>
@@ -91,7 +91,7 @@
                     </table>
                 </td>
                 <td style="width: 50%;" valign="top">
-                    <table>
+                    <table class="tableg">
                         <tr>
                             <td>Tipo Persona:</td>
                             <td>
@@ -138,7 +138,7 @@
                 <td colspan="2">
                     <fieldset>
                         <legend>Teléfono Móvil</legend>
-                        <table width="100%">
+                        <table width="100%" class="tableg">
                             <tr>
                                 <td>
                                     Operador:
@@ -161,7 +161,7 @@
                 <td colspan="2">
                     <fieldset>
                         <legend>Documento de Identidad</legend>
-                        <table width="100%">
+                        <table width="100%" class="tableg">
                             <tr>
                                 <td>
                                     Tipo Doc.
@@ -181,14 +181,13 @@
                 <td colspan="2">
                     <fieldset>
                         <legend>Datos del EE.SS donde se atiende</legend>
-                        <table width="100%">
+                        <table width="100%" class="tableg">
                             <tr>              
 
                             </tr>
                             <tr>
-                                <td>Renaes:</td>
-                                <td colspan="3">
-                                    <input class="text_area" type="text" name="establec" id="establec" size="100" maxlength="250" value="<?php echo $this->persona->establec_name; ?>" />
+                                <td colspan="4">
+                                    <input placeholder="Establecimiento de Salud" class="text_area" type="text" name="establec" id="establec" value="<?php echo $this->persona->establec_name; ?>" />
                                     <input type="hidden" name="cod_2000" id="cod_2000" value="<?php echo $this->persona->cod_2000; ?>"/>
                                 </td>
                             </tr>
@@ -317,7 +316,7 @@
                     <input type="hidden" name="controller" value="person" />
                     <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
                 </form>
-                <table  border="0" width="100%">
+                <table  border="0" width="100%" class="tableg">
                     <thead>
                         <tr>
                             <th width="70%">                     
@@ -381,7 +380,7 @@
                     <input type="hidden" name="controller" value="person" />
                     <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
                 </form>
-                <table  border="0" width="100%">
+                <table  border="0" width="100%" class="tableg">
                     <thead>
                         <tr>
                             <th width="70%">                     
