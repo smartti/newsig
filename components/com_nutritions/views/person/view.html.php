@@ -18,11 +18,11 @@ class NutritionsViewPerson extends JView {
         $document->addScript(JURI::base().'components/com_nutritions/assets/js/bsn.AutoSuggest_2.1.3.js');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
-        $document->addScript(JURI::base().'components/com_nutritions/assets/js/funciones.js');
-        
-        $document->addScript(JURI::base().'components/com_nutritions/assets/js/bootstrap.min.js');
         
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/bootstrap.min.css');
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/funciones.js');        
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/bootstrap.min_.js');        
+        
 
         $persona = & $this->get('Data');
         if($persona->fe_nacimiento){
@@ -53,8 +53,10 @@ class NutritionsViewPerson extends JView {
         $discapacidades = $this->get('Discapacidades');
         $childResults = array();
         $pregnantResults = array();
+        
         $discapacidadResults = array();
         $riesgoResults = array();
+        
         if( $persona->id_entidad ){
             $childResults = $model->getChildActivities($persona->id_entidad);
             $pregnantResults = $model->getPregnantActivities($persona->id_entidad);

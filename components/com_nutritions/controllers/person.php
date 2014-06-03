@@ -73,7 +73,6 @@ class NutritionsControllerPerson extends NutritionsController
         $this->setRedirect( 'index.php?option=com_nutritions&view=persons&Itemid=3', $msg );
     }
     
-    
     public function addDiscapacidad() {
         $personId = JRequest::getVar('personId', NULL);
         $link = "index.php?option=com_nutritions&controller=discapacidad&view=discapacidad&task=edit&personId={$personId}&Itemid=3&cid[]=";
@@ -104,6 +103,7 @@ class NutritionsControllerPerson extends NutritionsController
         $msg = 'Riesgo Removido!!!';
         $link = 'index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]='.$personId;
         $this->setRedirect($link, $msg);
-    }    
+    }
+        
 }
 ?>

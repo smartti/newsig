@@ -5,7 +5,6 @@ function validaNum(e){
     te = String.fromCharCode(tecla); 
     return patron.test(te);  
 }
-
 function validateFields(){
     if(document.frmPct.nu_dni.value === "")
     {
@@ -92,7 +91,6 @@ function validateFields_infindhosp(){
     document.getElementById('task').value = 'saveAction'; 
     document.getElementById('frmInfindhosp').submit();
 }
-
 function verifyDelete($id_tbc){
      
         var answer = confirm ("Deseas ELIMINAR el registro?")

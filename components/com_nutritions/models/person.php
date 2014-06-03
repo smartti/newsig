@@ -323,7 +323,7 @@ class NutritionsModelPerson extends JModel
         return $results;
     }
     
-    public function getDiscapacidad($personId) {
+     public function getDiscapacidad($personId) {
         $query = "SELECT d.id_discapacidad, d.id_dg_discapacidad, dg.tx_descripcion FROM discapacidad d INNER JOIN detalle_general dg ON (d.id_dg_discapacidad=dg.id_detalle_general) WHERE d.id_entidad= {$personId}";
         
         $this->_db->setQuery($query);
@@ -338,7 +338,5 @@ class NutritionsModelPerson extends JModel
         $results = $this->_db->loadObjectList();
         return $results;
     }
-    
-    
 }
 ?>

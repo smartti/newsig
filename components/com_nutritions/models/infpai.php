@@ -30,7 +30,7 @@ class NutritionsModelInfpai extends JModel
         // Load the data
         if (empty( $this->_data )) {
             $query = "SELECT ig.id_pai, ig.cod_2000, ig.nu_anho, ig.nu_mes, ig.nu_00a, ig. r.desc_estab
-                      FROM inf_pai ig INNER JOIN 0001_geresall_renaes r on (ig.cod_2000=r.COD_2000)
+                      FROM inf_pai ig INNER JOIN entidad r on (ig.cod_2000=r.COD_2000)
                       WHERE r.id_pai=".$this->_id;
             //echo $query;
             $this->_db->setQuery( $query );

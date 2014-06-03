@@ -34,9 +34,9 @@ class NutritionsModelNutrition extends JModel
                       F.id_dg_material_techo, F.tx_observacion_techo, F.id_dg_material_paredes, F.tx_observacion_paredes, F.id_dg_material_piso, F.tx_observacion_piso, F.nu_telf_fijo,
                       F.id_dg_tipo_alumbrado, F.tx_observacion_tipo_alumbrado, F.id_dg_abastecimiento_agua, F.tx_observacion_abastecimiento_agua, F.id_dg_sshh, F.tx_observacion_sshh, 
                       F.id_dg_combustible_cocina, F.tx_observacion_combustible_cocina, F.id_dg_disposicion_basura, F.tx_observacion_disposicion_basura, F.fe_visita1, F.fe_visita2, F.fe_visita3, 
-                      F.id_dg_resultado, F.id_dg_resultado2, F.id_dg_resultado3, F.un_habitaciones, F.in_cria_animales, D.un_hogares, D.un_hogar, CONCAT_WS(' ',P.tx_apellido_paterno, P.tx_apellido_materno, P.tx_nombres) AS encuestador_name,id_persona_encuestador 
+                      F.id_dg_resultado, F.id_dg_resultado2, F.id_dg_resultado3, F.un_habitaciones, F.in_cria_animales, D.un_hogares, D.un_hogar, CONCAT_WS(' ',tx_nro_documento,'-',tx_apellido_paterno, tx_apellido_materno, tx_nombres) AS encuestador_name, id_persona_encuestador 
                       FROM familia as F INNER JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
-                      LEFT JOIN persona AS P ON (F.id_persona_encuestador = P.id_entidad)
+                      LEFT JOIN persona AS P ON (F.id_persona_encuestador = P.tx_nro_documento)
                       INNER JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)
                       WHERE F.id_familia=".$this->_id;
             

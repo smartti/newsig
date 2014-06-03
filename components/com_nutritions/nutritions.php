@@ -17,9 +17,10 @@ require_once (JPATH_COMPONENT.DS.'tables'.DS.'pregnants.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'establecimientos.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informegeneral.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informetbc.php');
-require_once (JPATH_COMPONENT.DS.'tables'.DS.'contacto.php');
-require_once (JPATH_COMPONENT.DS.'tables'.DS.'populations.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informeindhosp.php');
+require_once (JPATH_COMPONENT.DS.'tables'.DS.'populations.php');
+require_once (JPATH_COMPONENT.DS.'tables'.DS.'informepai.php');
+
 
 
 // Require specific controller if requested
