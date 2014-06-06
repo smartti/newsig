@@ -31,9 +31,9 @@ class JConfig {
 	var $ftp_pass = '';
 	var $ftp_root = '';
 	var $dbtype = 'mysql';
-	var $host = 'localhost';
-	var $user = 'root';
-	var $db = 'newsig';
+	var $host = '192.185.180.31';
+	var $user = 'diresala_usersig';
+	var $db = 'diresala_sigsalud';
 	var $dbprefix = 'sig_';
 	var $mailer = 'mail';
 	var $mailfrom = 'junior.rimac@gmail.com';
@@ -49,7 +49,7 @@ class JConfig {
 	var $MetaTitle = '1';
 	var $lifetime = '30';
 	var $session_handler = 'database';
-	var $password = 'root';
+	var $password = 'Nodo@2014';
 	var $sitename = 'NewSig';
 	var $MetaDesc = 'Joomla! - the dynamic portal engine and content management system';
 	var $MetaKeys = 'joomla, Joomla';

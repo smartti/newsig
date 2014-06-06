@@ -19,11 +19,13 @@ class NutritionsViewNutritions extends JView {
      * Categories view display method
      * @return void
      * */
+    
     function display($tpl = null) {
         //for pagination
         global $mainframe, $option;
+        $document = JFactory::getDocument();
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/map.js');  
         $model = $this->getModel();
-        
         $filter_departamento = $mainframe->getUserStateFromRequest( $option.'.nutritions.filter_departamento','filter_departamento', '13', 'int' );
         $filter_provincia = $mainframe->getUserStateFromRequest( $option.'.nutritions.filter_provincia','filter_provincia', '1301', 'int' );
         $filter_distrito = $mainframe->getUserStateFromRequest( $option.'.nutritions.filter_distrito','filter_distrito', '0', 'int' );
@@ -68,6 +70,7 @@ class NutritionsViewNutritions extends JView {
         $this->assignRef('lists', $lists);
         $this->assignRef('id_familia', $id_familia);
         $this->assignRef('tx_apellidos', $tx_apellidos);
+        
 
         parent::display($tpl);
     }

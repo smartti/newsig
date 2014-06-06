@@ -24,7 +24,6 @@ $ordering = 1;
             </tr>
         </table>
     </fieldset>
-    
     <fieldset>
         <legend>Datos de la Familia</legend>
         <table>
@@ -64,6 +63,7 @@ $ordering = 1;
     <input type="hidden" name="controller" value="nutritions" />
     <input type="hidden" name="view" value="nutritions" />
 </form>
+
 <?php
 if(count($this->results) > 0 ){
 ?>
