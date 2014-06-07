@@ -5,7 +5,7 @@ defined('_JEXEC') or die();
 
 jimport('joomla.application.component.model');
 
-class NutritionsModelNutritions extends JModel {
+class NutritionsModelGeoreferencias extends JModel {
 
     /**
      * Data array
@@ -69,7 +69,7 @@ class NutritionsModelNutritions extends JModel {
         $where = array();
         
         if( $ubigeoId > 0 ){
-            $where[] = " D.id_ubigeo LIKE '{$ubigeoId}%' ";
+            $where[] = "D.un_latitud !=0 AND D.id_ubigeo LIKE '{$ubigeoId}%' ";
         }
         if($apellidos){
             $where[] = " F.tx_apellidos LIKE '%{$apellidos}%' ";
@@ -83,7 +83,7 @@ class NutritionsModelNutritions extends JModel {
         $query = "SELECT F.id_familia, F.tx_apellidos, F.fe_visita1, V.ubigeo_dpto, V.ubigeo_prov, V.ubigeo_dist, D.un_latitud, D.un_longitud
                   FROM familia as F 
                   LEFT JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
-                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo) {$where}";
+                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)  {$where}";
         
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
