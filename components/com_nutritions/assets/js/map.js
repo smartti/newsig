@@ -3,14 +3,23 @@ var markersArray = [];
 
 function initMap()
 {
-    var latlng = new google.maps.LatLng(-8, -79);
+    var latlng = new google.maps.LatLng(document.getElementById("un_latitud").value, document.getElementById("un_longitud").value);
     var myOptions = {
         zoom: 10,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+    
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     // add a click event handler to the map object
+   new google.maps.Marker({
+        position: map.getCenter()
+        , map: map
+        , title: 'Ubicación Inicial'
+        , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/green/blank.png'
+        , cursor: 'default'
+        , draggable: true
+    });
     google.maps.event.addListener(map, "click", function(event)
     {
         // place a marker
@@ -56,29 +65,3 @@ function placeMarker(location) {
     //map.setCenter(location);
 
 }
-function createMarker(point)
-{
-    //Creamos el infowindow dinamico para todas las marcas
-    var marker = new google.maps.Marker(point, iconoMarca);
-    google.maps.event.addListener(marker, 'click', function() {
-        //marker.openInfoWindowHtml("<span style='font-size: 8pt; font-family: verdana'>" + nombre + "</span><br><span style='font-size: 8pt; font-family: verdana'>" + direccion + "</span><br>");
-    });
-    return marker;
-}
-function initialize() {
-  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-  var mapOptions = {
-    zoom: 4,
-    center: myLatlng
-  }
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'Hello World!'
-  });
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-
-
