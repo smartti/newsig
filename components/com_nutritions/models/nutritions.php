@@ -83,7 +83,7 @@ class NutritionsModelNutritions extends JModel {
         $query = "SELECT F.id_familia, F.tx_apellidos, F.fe_visita1, V.ubigeo_dpto, V.ubigeo_prov, V.ubigeo_dist, D.un_latitud, D.un_longitud
                   FROM familia as F 
                   LEFT JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
-                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo) {$where}";
+                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo) {$where} LIMIT 0,100";
         
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
