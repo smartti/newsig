@@ -10,6 +10,7 @@ class NutritionsViewPregnant extends JView {
     function display($tpl = null) {
         global $mainframe, $option;
         
+        $model = $this->getModel();
         $document = JFactory::getDocument();
         $document->addScript(JURI::base().'components/com_nutritions/assets/js/bsn.AutoSuggest_2.1.3.js');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
@@ -18,6 +19,10 @@ class NutritionsViewPregnant extends JView {
         
         $actividad = & $this->get('Data');
         $persona = & $this->get('Persona');
+        
+         if( $actividad->id_evaluacion_gestante ){
+            $pregnantcontrolResults = $model->getEvaluacioncontrol($actividad->id_evaluacion_gestante);
+        }
         if($persona->fe_nacimiento){
             $now = date('Y-m-d');
             $fecha_nacimiento = $persona->fe_nacimiento;
@@ -164,10 +169,19 @@ class NutritionsViewPregnant extends JView {
         $this->assignRef('lists', $lists);
         $this->assignRef('persona', $persona);
         $this->assignRef('actividad', $actividad);
+        $this->assignRef('pregnantcontrolResults', $pregnantcontrolResults);
         parent::display($tpl);
     }
     
     function diff($date1, $date2) {
+        // Checks $start and $end format (timestamp only for more simplicity and portability)
+        $diff = abs(strtotime($date2) - strtotime($date1));
+
+        $years = floor($diff / (365*60*60*24));
+        return $years;
+    }
+    
+    function getYearDiff($date1, $date2) {
         // Checks $start and $end format (timestamp only for more simplicity and portability)
         $diff = abs(strtotime($date2) - strtotime($date1));
 

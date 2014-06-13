@@ -436,7 +436,7 @@
 
 <?php
 if ($this->persona->id_entidad > 0) {
-    ?>
+?>
     <fieldset>
         <legend>Actividades</legend>
         <form id="activityForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="activityForm">
@@ -653,7 +653,7 @@ if ($this->persona->id_entidad > 0) {
 
     </fieldset>
 
-    <?php
+<?php
 }
 ?>
 

@@ -122,20 +122,7 @@ class NutritionsModelPregnant extends JModel
         
         return $persona;
     }
-    
-    function &getGestantecontrol()
-    {
-        // Load persona
-        $query = 'SELECT P.id_entidad, P.tx_nombres, P.fe_nacimiento, P.tx_apellido_paterno, P.tx_apellido_materno, P.in_sexo 
-                  FROM persona AS P 
-                  WHERE P.id_entidad='.$this->_gestantecontrolId;
-        //echo $query;
-        $this->_db->setQuery( $query );
-        $persona = $this->_db->loadObject();
         
-        return $persona;
-    }
-    
     public function getImcPg() {
         $query = "SELECT id_detalle_general as value, tx_descripcion as text FROM detalle_general WHERE id_general = '26'";
         $this->_db->setQuery($query);
@@ -256,6 +243,21 @@ class NutritionsModelPregnant extends JModel
         $query = "DELETE FROM evaluacion_gestante WHERE id_evaluacion_gestante = '$evaluacionId'";
         $this->_db->setQuery($query);
         $this->_db->query();
+    }
+    
+    public function getEvaluacioncontrol($evaluacionId) {
+        
+        $query = "SELECT GC.id_evaluacion_gestante_control, EN.id_actividad, GC.fe_visita, EN.de_peso_habitual, GC.de_peso_actual, GC.nu_hemoglobina, 
+                  D1.tx_descripcion AS img_pc, D2.tx_descripcion AS ganancia_peso 
+                  FROM persona AS P INNER JOIN actividad_entidad AS AE ON (P.id_entidad = AE.id_entidad) 
+                  INNER JOIN evaluacion_gestante AS EN ON ( AE.id_actividad = EN.id_actividad )
+                  INNER JOIN evaluacion_gestante_control GC ON ( GC.id_evaluacion_gestante = EN.id_evaluacion_gestante )
+                  LEFT JOIN detalle_general AS D1 ON ( GC.id_dg_imc_pg = D1.id_detalle_general ) 
+                  LEFT JOIN detalle_general AS D2 ON ( GC.id_dg_ganancia_peso = D2.id_detalle_general ) 
+                  WHERE EN.id_evaluacion_gestante= {$evaluacionId}";
+        $this->_db->setQuery($query);
+        $results = $this->_db->loadObjectList();
+        return $results;
     }
 
 }
