@@ -136,7 +136,7 @@ class NutritionsModelEstablec extends JModel {
 
     public function getEstablecimientos($name, $limit, $usuario) {
         $query = "SELECT cod_2000, CONCAT_WS(' - ',cod_2000, DESC_Dpto, desc_prov, desc_dist, '|', desc_disa, DESC_RED, DESC_ESTAB) AS establec_name FROM entidad 
-                  WHERE (cod_ue='$usuario' or cod_2000='$usuario' or tx_usuario_creacion='$usuario') and CONCAT(cod_2000, DESC_Dpto, desc_prov, desc_dist, desc_disa, DESC_RED, DESC_ESTAB) LIKE UPPER('%$name%') LIMIT $limit";
+                  WHERE (cod_ue='$usuario' or cod_2000='$usuario' or tx_usuario_creacion='$usuario' or '$usuario' like 'admin%') and CONCAT(cod_2000, DESC_Dpto, desc_prov, desc_dist, desc_disa, DESC_RED, DESC_ESTAB) LIKE UPPER('%$name%') LIMIT $limit";
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
         return $results;

@@ -64,6 +64,13 @@ defined('_JEXEC') or die('Restricted access');
                     <input class="text_area" type="text" name="tx_nombres" id="tx_nombres" size="25" maxlength="250" value="<?php echo ($this->tx_nombres) ? $this->tx_nombres : ''; ?>" />
                 </td>
             </tr>
+            <tr>              
+                <td colspan="2">&nbsp;</td> 
+                <td>DNI:</td>
+                <td>
+                    <input class="text_area" type="text" name="tx_nro_documento" id="tx_nro_documento" size="25" maxlength="250" value="<?php echo ($this->tx_nro_documento) ? $this->tx_nro_documento : ''; ?>" />
+                </td>
+            </tr>
         </table>
     </fieldset>
 

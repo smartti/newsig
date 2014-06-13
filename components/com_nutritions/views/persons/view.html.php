@@ -26,6 +26,7 @@ class NutritionsViewPersons extends JView {
         $tx_apellido_paterno = $mainframe->getUserStateFromRequest( $option.'.persons.tx_apellido_paterno', 'tx_apellido_paterno', '', 'string' );
         $tx_apellido_materno = $mainframe->getUserStateFromRequest( $option.'.persons.tx_apellido_materno', 'tx_apellido_materno', '', 'string' );
         $tx_nombres = $mainframe->getUserStateFromRequest( $option.'.persons.tx_nombres', 'tx_nombres', '', 'string' );
+        $tx_nro_documento = $mainframe->getUserStateFromRequest( $option.'.persons.tx_nro_documento', 'tx_nro_documento', '', 'string' );
         
         $departamentos = $model->getDepartamentos();
         $provincias = $model->getProvincias();
@@ -52,6 +53,7 @@ class NutritionsViewPersons extends JView {
         $this->assignRef('lists', $lists);
         $this->assignRef('id_entidad', $id_entidad);
         $this->assignRef('tx_nombres', $tx_nombres);
+        $this->assignRef('tx_nro_documento', $tx_nro_documento);
         $this->assignRef('tx_apellido_paterno', $tx_apellido_paterno);
         $this->assignRef('tx_apellido_materno', $tx_apellido_materno);
 

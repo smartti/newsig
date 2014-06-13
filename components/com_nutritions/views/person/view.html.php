@@ -19,9 +19,9 @@ class NutritionsViewPerson extends JView {
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
         
-        $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/bootstrap.min.css');
+        $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/bootstrap.min_.css');
         $document->addScript(JURI::base().'components/com_nutritions/assets/js/funciones.js');        
-        $document->addScript(JURI::base().'components/com_nutritions/assets/js/bootstrap.min_.js');        
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/bootstrap.min.js');        
         
 
         $persona = & $this->get('Data');

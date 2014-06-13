@@ -187,7 +187,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4">
-                                    <input placeholder="Establecimiento de Salud" class="text_area" type="text" name="establec" id="establec" value="<?php echo $this->persona->establec_name; ?>" />
+                                    <input style=" width: 100%;"placeholder="Establecimiento de Salud" class="text_area" type="text" name="establec" id="establec" value="<?php echo $this->persona->establec_name; ?>" />
                                     <input type="hidden" name="cod_2000" id="cod_2000" value="<?php echo $this->persona->cod_2000; ?>"/>
                                 </td>
                             </tr>

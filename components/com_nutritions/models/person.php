@@ -226,57 +226,57 @@ class NutritionsModelPerson extends JModel
             return false;
         }
         
-        $riesgoData['id_riesgo'] = $data['id_riesgo'];
-        $riesgoData['id_entidad'] = $row->id_entidad;;
-        $riesgoData['id_dg_riesgo'] = $data['id_dg_riesgo'];
-        if(!$riesgoData['id_riesgo']){
-            $riesgoData['fe_creacion'] = date('Y-m-d H:m:s');
-        }else{
-            $riesgoData['fe_modificacion'] = date('Y-m-d H:m:s');
-        }
-        $riesgoRow  =& $this->getTable('riesgos', '');
-        // bind it to the table
-        if (!$riesgoRow->bind($riesgoData)) {
-            JError::raiseError(500, $this->_db->getErrorMsg() );
-            return false;
-        }
-        
-        // Make sure the data is valid
-        if (!$riesgoRow->check()) {
-            $this->setError($riesgoRow->getError());
-            return false;
-        }
-        // Store it in the db
-        if (!$riesgoRow->store()) {
-            JError::raiseError(500, $this->_db->getErrorMsg() );
-            return false;
-        }
-        
-        $discapacidadData['id_discapacidad'] = $data['id_discapacidad'];
-        $discapacidadData['id_entidad'] = $row->id_entidad;
-        $discapacidadData['id_dg_discapacidad'] = $data['id_dg_discapacidad'];
-        if(!$discapacidadData['id_discapacidad']){
-            $discapacidadData['fe_creacion'] = date('Y-m-d H:m:s');
-        }else{
-            $discapacidadData['fe_modificacion'] = date('Y-m-d H:m:s');
-        }
-        $discapacidadRow =& $this->getTable('discapacidades', '');
-        // bind it to the table
-        if (!$discapacidadRow->bind($discapacidadData)) {
-            JError::raiseError(500, $this->_db->getErrorMsg() );
-            return false;
-        }
-        
-        // Make sure the data is valid
-        if (!$discapacidadRow->check()) {
-            $this->setError($discapacidadRow->getError());
-            return false;
-        }
-        // Store it in the db
-        if (!$discapacidadRow->store()) {
-            JError::raiseError(500, $this->_db->getErrorMsg() );
-            return false;
-        }
+//        $riesgoData['id_riesgo'] = $data['id_riesgo'];
+//        $riesgoData['id_entidad'] = $row->id_entidad;;
+//        $riesgoData['id_dg_riesgo'] = $data['id_dg_riesgo'];
+//        if(!$riesgoData['id_riesgo']){
+//            $riesgoData['fe_creacion'] = date('Y-m-d H:m:s');
+//        }else{
+//            $riesgoData['fe_modificacion'] = date('Y-m-d H:m:s');
+//        }
+//        $riesgoRow  =& $this->getTable('riesgos', '');
+//        // bind it to the table
+//        if (!$riesgoRow->bind($riesgoData)) {
+//            JError::raiseError(500, $this->_db->getErrorMsg() );
+//            return false;
+//        }
+//        
+//        // Make sure the data is valid
+//        if (!$riesgoRow->check()) {
+//            $this->setError($riesgoRow->getError());
+//            return false;
+//        }
+//        // Store it in the db
+//        if (!$riesgoRow->store()) {
+//            JError::raiseError(500, $this->_db->getErrorMsg() );
+//            return false;
+//        }
+//        
+//        $discapacidadData['id_discapacidad'] = $data['id_discapacidad'];
+//        $discapacidadData['id_entidad'] = $row->id_entidad;
+//        $discapacidadData['id_dg_discapacidad'] = $data['id_dg_discapacidad'];
+//        if(!$discapacidadData['id_discapacidad']){
+//            $discapacidadData['fe_creacion'] = date('Y-m-d H:m:s');
+//        }else{
+//            $discapacidadData['fe_modificacion'] = date('Y-m-d H:m:s');
+//        }
+//        $discapacidadRow =& $this->getTable('discapacidades', '');
+//        // bind it to the table
+//        if (!$discapacidadRow->bind($discapacidadData)) {
+//            JError::raiseError(500, $this->_db->getErrorMsg() );
+//            return false;
+//        }
+//        
+//        // Make sure the data is valid
+//        if (!$discapacidadRow->check()) {
+//            $this->setError($discapacidadRow->getError());
+//            return false;
+//        }
+//        // Store it in the db
+//        if (!$discapacidadRow->store()) {
+//            JError::raiseError(500, $this->_db->getErrorMsg() );
+//            return false;
+//        }
         
         
         return $row->id_entidad;

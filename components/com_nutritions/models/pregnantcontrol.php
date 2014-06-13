@@ -3,11 +3,12 @@
 defined('_JEXEC') or die();
 jimport('joomla.application.component.model');
 
-class NutritionsModelPregnant extends JModel
+class NutritionsModelPregnantcontrol extends JModel
 {
     var $_id;
     var $_data;
     var $_personId;
+    var $_evaluacionId;
 
     function __construct()
     {
@@ -15,14 +16,14 @@ class NutritionsModelPregnant extends JModel
 
         $array = JRequest::getVar('cid', 0, '', 'array');
         $this->setId((int) $array[0]);
-        $personId = JRequest::getInt('personId', 0);
-        if( $personId > 0 ){
-            $this->setPersonId($personId);
+        $evaluacionId = JRequest::getInt('evaluacionId', 0);
+        if( $evaluacionId > 0 ){
+            $this->setEvaluacionId($evaluacionId);
         }
     }
     
-    public function setPersonId($personId) {
-        $this->_personId = $personId;
+    public function setEvaluacionId($evaluacionId) {
+        $this->_evaluacionId = $evaluacionId;
     }
 
     function setId($id)
@@ -57,10 +58,6 @@ class NutritionsModelPregnant extends JModel
             $this->_data = new stdClass();
             $this->_data->id_evaluacion_gestante = 0;
             $this->_data->fe_visita = null;
-            $this->_data->de_peso_habitual = null;
-            $this->_data->de_talla = null;
-            $this->_data->fe_pp = null;
-            $this->_data->fe_fur = null;
             $this->_data->nu_edad_gestacional = null;
             $this->_data->de_peso_actual = null;
             $this->_data->nu_hemoglobina = null;
@@ -80,15 +77,6 @@ class NutritionsModelPregnant extends JModel
             $this->_data->in_tipo_parto = null;
             $this->_data->id_ubigeo_parto = null;
             $this->_data->cod_2000_parto = null;
-            $this->_data->fe_toma_historicos = null;
-            $this->_data->nu_embarazos_anteriores = NULL;
-            $this->_data->nu_partos_anteriores = NULL;
-            $this->_data->nu_partos_prematuros = NULL;
-            $this->_data->nu_hijos_vivos = NULL;
-            $this->_data->nu_molas_abortos_ectopicos = NULL;
-            $this->_data->id_dg_ultimo_evento = NULL;
-            $this->_data->id_dg_lugar_ultimo_evento = NULL;
-            $this->_data->fe_ultimo_evento = NULL;
             $this->_data->tx_usuario_creacion = null;
             $this->_data->fe_creacion = null;
             $this->_data->tx_usuario_modificacion = null;
@@ -96,39 +84,31 @@ class NutritionsModelPregnant extends JModel
             $this->_data->anemia = null;
             $this->_data->edad_visita = null;
             $this->_data->establec_name=NULL;
-            $this->_data->ubigeo_name=NULL;
+            $this->_data->ubigeo_name=NULL;            
             
-            $query = "SELECT AE.id_actividad FROM actividad_entidad as AE INNER JOIN actividad as A WHERE AE.id_entidad = '{$this->_personId}' AND A.id_titulo = '2'";
-            $this->_db->setQuery($query);
-            $tempActividad = $this->_db->loadResult();
-            if ($tempActividad) {
-                $this->_data->id_actividad = $tempActividad;
-            } else {
-                $this->_data->id_actividad = null;
-            }
         }
         return $this->_data;
     }
     
-    function &getPersona()
+    function &getEvaluacion()
+    {
+        // Load persona
+        $query = 'SELECT EG.*
+                  FROM evaluacion_gestante AS EG 
+                  WHERE EG.id_evaluacion_gestante='.$this->_evaluacionId;
+        //echo $query;
+        $this->_db->setQuery( $query );
+        $persona = $this->_db->loadObject();
+        
+        return $evaluacioncontrol;
+    }
+    
+      function &getPersona()
     {
         // Load persona
         $query = 'SELECT P.id_entidad, P.tx_nombres, P.fe_nacimiento, P.tx_apellido_paterno, P.tx_apellido_materno, P.in_sexo 
                   FROM persona AS P 
                   WHERE P.id_entidad='.$this->_personId;
-        //echo $query;
-        $this->_db->setQuery( $query );
-        $persona = $this->_db->loadObject();
-        
-        return $persona;
-    }
-    
-    function &getGestantecontrol()
-    {
-        // Load persona
-        $query = 'SELECT P.id_entidad, P.tx_nombres, P.fe_nacimiento, P.tx_apellido_paterno, P.tx_apellido_materno, P.in_sexo 
-                  FROM persona AS P 
-                  WHERE P.id_entidad='.$this->_gestantecontrolId;
         //echo $query;
         $this->_db->setQuery( $query );
         $persona = $this->_db->loadObject();
@@ -173,42 +153,32 @@ class NutritionsModelPregnant extends JModel
     
     public function store($data)
     {
-        $actividadData['id_actividad'] = $data['id_actividad'];
-        $actividadData['id_titulo'] = '2';
-        $actividadData['tx_usuario_creacion'] = 'admin';
-        if(!$actividadData['id_actividad']){
-            $actividadData['fe_creacion'] = date('Y-m-d H:m:s');
+        $evaluacioncontrolData['id_evaluacion_gestante_control'] = $data['id_actividad'];
+        $evaluacioncontrolData['id_titulo'] = '2';
+        $evaluacioncontrolData['tx_usuario_creacion'] = 'admin';
+        if(!$evaluacioncontrolData['id_actividad']){
+            $evaluacioncontrolData['fe_creacion'] = date('Y-m-d H:m:s');
         }else{
-            $actividadData['fe_modificacion'] = date('Y-m-d H:m:s');
+            $evaluacioncontrolData['fe_modificacion'] = date('Y-m-d H:m:s');
         }
-        $actividadRow  =& $this->getTable('actividades', '');
+        $evaluacioncontrolRow  =& $this->getTable('actividades', '');
         // bind it to the table
-        if (!$actividadRow->bind($actividadData)) {
+        if (!$evaluacioncontrolRow->bind($evaluacioncontrolData)) {
             JError::raiseError(500, $this->_db->getErrorMsg() );
             return false;
         }
         
         // Make sure the data is valid
-        if (!$actividadRow->check()) {
-            $this->setError($actividadRow->getError());
+        if (!$evaluacioncontrolRow->check()) {
+            $this->setError($evaluacioncontrolRow->getError());
             return false;
         }
         // Store it in the db
-        if (!$actividadRow->store()) {
+        if (!$evaluacioncontrolRow->store()) {
             JError::raiseError(500, $this->_db->getErrorMsg() );
             return false;
         }
-        
-        $query = "SELECT id_actividad FROM actividad_entidad WHERE id_actividad = '{$actividadRow->id_actividad}'";
-        $this->_db->setQuery($query);
-        $temporalResult = $this->_db->loadResult();
-        if( !$temporalResult ){
-            $query = "INSERT INTO actividad_entidad VALUES('{$actividadRow->id_actividad}', '{$data['id_entidad']}')";
-            $this->_db->setQuery($query);
-            $this->_db->query();
-        }
-        
-        $data['id_actividad'] = $actividadRow->id_actividad;
+
         if($data['fe_visita']){
             $temporalArray = explode('/', $data['fe_visita']);
             $data['fe_visita'] = $temporalArray[2].'-'.$temporalArray[1].'-'.$temporalArray[0];
@@ -225,13 +195,13 @@ class NutritionsModelPregnant extends JModel
             $temporalArray2 = explode('/', $data['fe_pp']);
             $data['fe_pp'] = $temporalArray2[2].'-'.$temporalArray2[1].'-'.$temporalArray2[0];
         }
-        if(!$data['id_evaluacion_gestante']){
+        if(!$data['id_evaluacion_gestante_control']){
             $data['fe_creacion'] = date('Y-m-d H:m:s');
         }else{
             $data['fe_modificacion'] = date('Y-m-d H:m:s');
         }
         
-        $row  =& $this->getTable('pregnants', '');
+        $row  =& $this->getTable('pregnantscontrol', '');
         // bind it to the table
         if (!$row->bind($data)) {
             JError::raiseError(500, $this->_db->getErrorMsg() );
@@ -249,11 +219,11 @@ class NutritionsModelPregnant extends JModel
             return false;
         }
         
-        return $row->id_evaluacion_gestante;
+        return $row->id_evaluacion_gestante_control;
     }
     
-    public function removeEvaluacion($evaluacionId) {
-        $query = "DELETE FROM evaluacion_gestante WHERE id_evaluacion_gestante = '$evaluacionId'";
+    public function removeEvaluacioncontrol($evaluacioncontrolId) {
+        $query = "DELETE FROM evaluacion_gestante_control WHERE id_evaluacion_gestante_control = '$evaluacioncontrolId'";
         $this->_db->setQuery($query);
         $this->_db->query();
     }

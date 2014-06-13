@@ -53,6 +53,7 @@ class NutritionsModelPersons extends JModel {
         $distritoId = JRequest::getInt('filter_distrito', 0);
         $entidadId = JRequest::getInt('id_entidad', 0);
         $nombres = JRequest::getVar('tx_nombres', null);
+        $tx_nro_documento = JRequest::getVar('tx_nro_documento', null);
         $apellidoPaterno = JRequest::getVar('tx_apellido_paterno', null);
         $apellidoMaterno = JRequest::getVar('tx_apellido_materno', null);
         
@@ -75,6 +76,9 @@ class NutritionsModelPersons extends JModel {
         }
         if($nombres){
             $where[] = " P.tx_nombres LIKE '%{$nombres}%' ";
+        }
+        if($tx_nro_documento){
+            $where[] = " P.tx_nro_documento LIKE '%{$tx_nro_documento}%' ";
         }
         if($apellidoPaterno){
             $where[] = " P.tx_apellido_paterno LIKE '%{$apellidoPaterno}%' ";
