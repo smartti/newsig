@@ -19,23 +19,7 @@
         background-color: transparent;
     }
 </style>
-<script type="text/javascript">
-    function validateFamilyAddress() {
-        var departamento = document.getElementById('filter_departamento');
-        var provincia = document.getElementById('filter_provincia');
-        var distrito = document.getElementById('filter_distrito');
 
-        var departamentoValue = departamento.options[departamento.selectedIndex].value;
-        var provinciaValue = departamento.options[provincia.selectedIndex].value;
-        var distritoValue = departamento.options[distrito.selectedIndex].value;
-        if (departamentoValue === '0' || provinciaValue === '0' || distritoValue === '0') {
-            alert('Por favor seleccione Departamento, Provincia y Distrito antes de proseguir!');
-            return false;
-        }
-        document.getElementById('task').value = 'saveAction';
-        document.getElementById('adminForm').submit();
-    }
-</script>
 <form id="adminForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm">
     <fieldset>
         <legend>Acciones</legend>
@@ -49,11 +33,11 @@
                 </td>
                 <td style="width: 25%;">
                     <input type="button" value="Limpiar" onclick="javascript:document.getElementById('task').value = 'cleanAction';
-                            document.getElementById('adminForm').submit();"/>
+        document.getElementById('adminForm').submit();"/>
                 </td>
                 <td style="width: 25%;">
                     <input type="button" value="Cancelar" onclick="javascript:document.getElementById('task').value = 'cancelAction';
-                            document.getElementById('adminForm').submit();"/>
+        document.getElementById('adminForm').submit();"/>
                 </td>
             </tr>
         </table>
@@ -90,23 +74,23 @@
             <tr>              
                 <td>Centro Poblado:</td>
                 <td>
-                    <input class="text_area" type="text" name="tx_centro_poblado" id="tx_centro_poblado" size="25" maxlength="250" value="<?php echo $this->familia->tx_centro_poblado; ?>" />
+                    <input class="text_area" type="text" name="tx_centro_poblado" id="tx_centro_poblado" size="25" maxlength="250" value="<?php echo $this->familia->tx_centro_poblado; ?>" onkeypress="javascript:return soloLetras(event)" />
                 </td>
                 <td>Sector:</td>
                 <td>
-                    <input class="text_area" type="text" name="tx_sector" id="tx_sector" size="25" maxlength="250" value="<?php echo $this->familia->tx_sector; ?>" />
+                    <input class="text_area" type="text" name="tx_sector" id="tx_sector" size="25" maxlength="250" value="<?php echo $this->familia->tx_sector; ?>" onkeypress="javascript:return soloLetras(event)" />
                 </td>
             </tr>
             <tr>
                 <td>Dirección:</td>
                 <td  colspan="3">
-                    <input class="text_area" type="text" name="tx_direccion" id="tx_direccion" size="84" maxlength="250" value="<?php echo $this->familia->tx_direccion; ?>" />
+                    <input class="text_area" type="text" name="tx_direccion" id="tx_direccion" size="84" maxlength="250" value="<?php echo $this->familia->tx_direccion; ?>" onkeypress="javascript:return soloLetras(event)" />
                 </td>
             </tr>
             <tr>
                 <td>Referencia:</td>
                 <td  colspan="3">
-                    <input class="text_area" type="text" name="tx_referencia" id="tx_referencia" size="84" maxlength="250" value="<?php echo $this->familia->tx_referencia; ?>" />
+                    <input class="text_area" type="text" name="tx_referencia" id="tx_referencia" size="84" maxlength="250" value="<?php echo $this->familia->tx_referencia; ?>" onkeypress="javascript:return soloLetras(event)" />
                 </td>
             </tr>
         </table>
@@ -131,13 +115,13 @@
             </thead>
             <tr>              
                 <td>
-                    <input class="text_area" type="text" name="un_latitud" id="un_latitud" size="16" maxlength="16" value="<?php echo $this->familia->un_latitud; ?>" />
+                    <input class="text_area"  readonly="true" type="text" name="un_latitud" id="un_latitud" size="16" maxlength="16" value="<?php echo $this->familia->un_latitud; ?>" onkeypress="javascript:return soloNumeros(event)"  />
                 </td>
                 <td>
-                    <input class="text_area" type="text" name="un_longitud" id="un_longitud" size="16" maxlength="16" value="<?php echo $this->familia->un_longitud; ?>" />
+                    <input class="text_area"  readonly="true" type="text" name="un_longitud" id="un_longitud" size="16" maxlength="16" value="<?php echo $this->familia->un_longitud; ?>" onkeypress="javascript:return soloNumeros(event)" />
                 </td>
                 <td>
-                    <input class="text_area" type="text" name="un_altitud" id="un_altitud" size="4" maxlength="4" value="<?php echo $this->familia->un_altitud; ?>" /> msnm.
+                    <input class="text_area" type="text" name="un_altitud" id="un_altitud" size="4" maxlength="4" value="<?php echo $this->familia->un_altitud; ?>"onkeypress="javascript:return soloNumeros(event)"  /> msnm.
                 </td>
             </tr>
 
@@ -149,7 +133,7 @@
             <tr>              
                 <td>Apellidos:</td>
                 <td>
-                    <input class="text_area" type="text" name="tx_apellidos" id="tx_apellidos" size="25" maxlength="250" value="<?php echo $this->familia->tx_apellidos; ?>" />
+                    <input class="text_area" type="text" name="tx_apellidos" id="tx_apellidos" size="25" maxlength="250" value="<?php echo $this->familia->tx_apellidos; ?>" onkeypress="javascript:return soloLetras(event)" />
                 </td>
                 <td>N. Integrantes:</td>
                 <td>
@@ -169,7 +153,7 @@
             <tr>              
                 <td>Teléfono Fijo:</td>
                 <td>
-                    <input class="text_area" type="text" name="nu_telf_fijo" id="nu_telf_fijo" size="18" maxlength="18" value="<?php echo $this->familia->nu_telf_fijo; ?>" />
+                    <input class="text_area" type="text" name="nu_telf_fijo" id="nu_telf_fijo" size="18" maxlength="18" value="<?php echo $this->familia->nu_telf_fijo; ?>" onkeypress="javascript:return soloNumeros(event)"/>
                 </td>
                 <td colspan="2">&nbsp;</td>
             </tr>
@@ -215,7 +199,7 @@
                 <tr>              
                     <td>Encuestador:</td>
                     <td colspan="2">
-                        <input class="text_area" type="text" name="encuestador" id="encuestador" size="60" maxlength="250" value="<?php echo $this->familia->encuestador_name; ?>" />
+                        <input class="text_area" type="text" name="encuestador" id="encuestador" size="60" maxlength="250" value="<?php echo $this->familia->encuestador_name; ?>"/>
                         <input type="hidden" name="id_persona_encuestador" id="id_persona_encuestador" value="<?php echo $this->familia->id_persona_encuestador; ?>"/>
                     </td>
                 </tr>
@@ -224,17 +208,17 @@
         </fieldset>    
     </fieldset>
     <script type="text/javascript">
-        var options = {
-            script: "index.php?option=com_nutritions&controller=person&task=getEncuestador&",
-            varname: "encuestadorName",
-            json: true,
-            shownoresults: false,
-            maxresults: 6,
-            callback: function(obj) {
-                document.getElementById('id_persona_encuestador').value = obj.id;
-            }
-        };
-        var as_json = new bsn.AutoSuggest('encuestador', options);
+    var options = {
+        script: "index.php?option=com_nutritions&controller=person&task=getEncuestador&",
+        varname: "encuestadorName",
+        json: true,
+        shownoresults: false,
+        maxresults: 6,
+        callback: function(obj) {
+            document.getElementById('id_persona_encuestador').value = obj.id;
+        }
+    };
+    var as_json = new bsn.AutoSuggest('encuestador', options);
     </script>
     <p>&nbsp;</p>
     <?php
@@ -370,7 +354,7 @@
     <form id="memberForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="memberForm">
         <div style="text-align: left;">
             <input type="button" name="btnNew" value="Nuevo" onclick="javascript:document.getElementById('newTask').value = 'addMember';
-                    document.getElementById('memberForm').submit();" />
+        document.getElementById('memberForm').submit();" />
         </div>
         <input type="hidden" name="option" value="com_nutritions" />
         <input type="hidden" name="task" id="newTask" value="" />

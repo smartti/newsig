@@ -15,7 +15,8 @@ class NutritionsViewNutrition extends JView {
         $document->addScript(JURI::base().'components/com_nutritions/assets/js/bsn.AutoSuggest_2.1.3.js');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
-        $document->addScript(JURI::base().'components/com_nutritions/assets/js/map.js');    
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/map.js');  
+        $document->addScript(JURI::base().'components/com_nutritions/assets/js/funciones.js');   
         $model = $this->getModel();
         $familia = & $this->get('Data');
         $results = array();

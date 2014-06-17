@@ -314,93 +314,7 @@
                     </td>
                 </tr>
             </table>
-        </fieldset>
-        <fieldset>
-            <legend>Evaluaci&oacute;n Nutricional de la Gestante</legend>
-
-            <table style="width: 100%;">
-                <tr>
-                    <td style="width: 50%;" valign="top" >
-                        <fieldset>
-                            <legend>Evaluaci&oacute;n</legend>
-                            <table>
-                                <tr>
-                                    <td>
-                                        Fecha Visita:
-                                    </td>
-                                    <td>
-                                        <?php echo JHTML::_('calendar', $this->actividad->fe_visita, "fe_visita", "fe_visita", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '2')); ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Edad fecha visita:
-                                    </td>
-                                    <td>
-                                        <input class="text_area" tabindex="3" type="text" name="de_peso" id="de_peso" size="15" value="<?php echo $this->actividad->edad_visita; ?>" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Peso Visita:
-                                    </td>
-                                    <td>
-                                        <input class="text_area" tabindex="4" type="text" name="de_peso_actual" id="de_peso_actual" size="15" value="<?php echo $this->actividad->de_peso_actual; ?>" /> Kg.
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </fieldset>
-                    </td>
-                    <td style="width: 50%;" valign="top">
-                        <fieldset>
-                            <legend>Hemoglobina</legend>
-                            <table>
-                                <tr>
-                                    <td>
-                                        Medida:
-                                    </td>
-                                    <td>
-                                        <input class="text_area" tabindex="4" type="text" name="nu_hemoglobina" id="nu_hemoglobina" size="15" value="<?php echo $this->actividad->nu_hemoglobina; ?>" /> gr/dl
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Anemia:
-                                    </td>
-                                    <td>
-                                        <strong><?php echo $this->actividad->anemia; ?></strong>
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </td>
-                </tr>
-            </table>
-
-            <fieldset>
-                <legend>Indicadores</legend>
-                <table style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th style="width: 50%;" align="center" >IMC PG</th>
-                            <th style="width: 50%;" align="center" >Ganancia de Peso</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center">
-                                <?php echo $this->lists['imc_pg'] ?>
-                            </td>
-                            <td align="center">
-                                <?php echo $this->lists['ganancia_peso'] ?>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-
-        </fieldset>
+        </fieldset>       
 
     </fieldset>
     <script type="text/javascript">
@@ -463,8 +377,8 @@ if ($this->persona->id_entidad > 0) {
             </table>
             <input type="hidden" name="option" value="com_nutritions" />
             <input type="hidden" name="task" id="newTask" value="" />
-            <input type="hidden" name="controller" value="activities" />
-            <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
+            <input type="hidden" name="controller" value="pregnantcontrol" />
+            <input type="hidden" name="evaluacionId" value="<?php echo $this->actividad->id_evaluacion_gestante; ?>" />
         </form>
         <?php
         if (count($this->pregnantcontrolResults) > 0) {

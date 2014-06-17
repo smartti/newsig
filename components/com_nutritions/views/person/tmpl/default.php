@@ -21,8 +21,9 @@
         <table style="width: 100%;">
             <tr>
                 <td style="width: 25%;">
-                    <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction';
-                            document.getElementById('adminForm').submit();"/>
+                    <input type="button" value="Grabar" onclick="validatePerson();"/>
+<!--                    <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction';
+                            document.getElementById('adminForm').submit();"/>-->
                 </td>
                 <td>
                     &nbsp;
@@ -53,13 +54,13 @@
                         <tr>
                             <td>Nombres:</td>
                             <td>
-                                <input class="text_area" tabindex="1" type="text" name="tx_nombres" id="tx_nombres" size="25" value="<?php echo $this->persona->tx_nombres; ?>" />
+                                <input class="text_area" tabindex="1" type="text" name="tx_nombres" id="tx_nombres" size="25" value="<?php echo $this->persona->tx_nombres; ?>" onkeypress="javascript:return soloLetras(event)" />
                             </td>
                         </tr>
                         <tr>
                             <td>Ap. Paterno:</td>
                             <td>
-                                <input class="text_area" tabindex="3" type="text" name="tx_apellido_paterno" id="tx_apellido_paterno" size="25" value="<?php echo $this->persona->tx_apellido_paterno; ?>" />
+                                <input class="text_area" tabindex="3" type="text" name="tx_apellido_paterno" id="tx_apellido_paterno" size="25" value="<?php echo $this->persona->tx_apellido_paterno; ?>" onkeypress="javascript:return soloLetras(event)" />
                             </td>
                         </tr>
                         <tr>
@@ -107,7 +108,7 @@
                         <tr>
                             <td>Ap. Materno:</td>
                             <td>
-                                <input class="text_area" tabindex="4" type="text" name="tx_apellido_materno" id="tx_apellido_materno" size="25" value="<?php echo $this->persona->tx_apellido_materno; ?>" />
+                                <input class="text_area" tabindex="4" type="text" name="tx_apellido_materno" id="tx_apellido_materno" size="25" value="<?php echo $this->persona->tx_apellido_materno; ?>"onkeypress="javascript:return soloLetras(event)" />
                             </td>
                         </tr>
                         <tr>
@@ -145,7 +146,7 @@
                                 </td>
                                 <td><?php echo $this->lists['operador_telefonico']; ?></td>
                                 <td>
-                                    <input class="text_area" tabindex="3" type="text" name="tx_telf_cel" id="tx_telf_cel" size="25" value="<?php echo $this->persona->tx_telf_cel; ?>" />
+                                    <input class="text_area" tabindex="3" type="text" name="tx_telf_cel" id="tx_telf_cel" size="25" value="<?php echo $this->persona->tx_telf_cel; ?>" onkeypress="javascript:return soloNumeros(event)"/>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -169,7 +170,7 @@
                                 <td><?php echo $this->lists['tipo_documento']; ?></td>
                                 <td>N. Documento </td>
                                 <td>
-                                    <input class="text_area" type="text" name="tx_nro_documento" id="tx_nro_documento" size="25" value="<?php echo $this->persona->tx_nro_documento; ?>" />
+                                    <input class="text_area" type="text" name="tx_nro_documento" id="tx_nro_documento" size="25" value="<?php echo $this->persona->tx_nro_documento; ?>" onkeypress="javascript:return soloNumeros(event)" />
                                 </td>
                             </tr>
 
@@ -194,7 +195,7 @@
                             <tr>
                                 <td>Historia Clínica:</td>
                                 <td>
-                                    <input class="text_area" type="text" name="tx_hcl" id="tx_hcl" size="25" value="<?php echo $this->persona->tx_hcl; ?>" />
+                                    <input class="text_area" type="text" name="tx_hcl" id="tx_hcl" size="25" value="<?php echo $this->persona->tx_hcl; ?>" onkeypress="javascript:return soloNumeros(event)"/>
                                 </td>                                
                                 <td colspan="2">&nbsp;</td>
                             </tr>
@@ -209,7 +210,7 @@
                                 </td>
                                 <td>N° de Seguro:</td>
                                 <td>
-                                    <input class="text_area" type="text" name="tx_nro_seguro" id="tx_nro_seguro" size="25" value="<?php echo $this->persona->tx_nro_seguro; ?>" />
+                                    <input class="text_area" type="text" name="tx_nro_seguro" id="tx_nro_seguro" size="25" value="<?php echo $this->persona->tx_nro_seguro; ?>" onkeypress="javascript:return soloNumeros(event)" />
                                 </td>
                             </tr>                          
 
@@ -304,6 +305,9 @@
 <table  width="100%">
 
     <tr>
+        <?php
+        if ($this->persona->id_entidad > 0) {
+        ?>
         <td width="49%">
             <fieldset>
                 <legend>Discapacidad&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_discapacidad();"></a></legend>
@@ -367,7 +371,11 @@
 
             </fieldset>
         </td>
+        <?php }?>
         <td width="2%"></td>
+        <?php
+        if ($this->persona->id_entidad > 0) {
+        ?>
         <td width="49%">
             <fieldset>
                 <legend>Riesgo&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_riesgo();"></a></legend>
@@ -431,7 +439,7 @@
 
             </fieldset>
         </td></tr>
-
+        <?php }?>
 </table>
 
 <?php
