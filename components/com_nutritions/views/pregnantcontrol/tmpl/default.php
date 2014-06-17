@@ -85,7 +85,7 @@
                             <tr>
                                 <td>Edad:</td>
                                 <td>
-                                    <input class="text_area" tabindex="2" type="text" name="txtEdadVisita" id="txEdadVisita" readonly="true" size="25" value="<?php echo $this->actividad->edad_visita; ?>" />
+                                    <input class="text_area" tabindex="2" type="text" name="txtEdad" id="txEdad" readonly="true" size="25" value="<?php echo $this->actividad->edad_visita; ?>" />
                                 </td>
                             </tr>
                             <tr>
@@ -129,7 +129,7 @@
                                         Fecha Visita:
                                     </td>
                                     <td>
-                                        <?php echo JHTML::_('calendar', $this->actividad->fe_visita, "fe_visita", "fe_visita", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '2')); ?>
+                                        <?php echo JHTML::_('calendar', $this->evaluacioncontrol->fe_visita, "fe_visita", "fe_visita", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '2')); ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -137,7 +137,7 @@
                                         Edad fecha visita:
                                     </td>
                                     <td>
-                                        <input class="text_area" tabindex="3" type="text" name="de_peso" id="de_peso" size="15" value="<?php echo $this->actividad->edad_visita; ?>" />
+                                        <input class="text_area" tabindex="3" type="text" name="txtEdadVisita" id="txtEdadVisita" size="15" value="<?php echo $this->evaluacioncontrol->edad_visita; ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -145,17 +145,10 @@
                                         Peso Visita:
                                     </td>
                                     <td>
-                                        <input class="text_area" tabindex="4" type="text" name="de_peso_actual" id="de_peso_actual" size="15" value="<?php echo $this->actividad->de_peso_actual; ?>" /> Kg.
+                                        <input class="text_area" tabindex="4" type="text" name="de_peso_actual" id="de_peso_actual" size="15" value="<?php echo $this->evaluacioncontrol->de_peso_actual; ?>" /> Kg.
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        Talla:
-                                    </td>
-                                    <td>
-                                        <input class="text_area" tabindex="3" type="text" name="de_talla" id="de_talla" size="15" value="<?php echo $this->actividad->de_talla; ?>" /> cm.
-                                    </td>
-                                </tr>
+
                             </table>
                         </fieldset>
                     </td>
@@ -168,7 +161,7 @@
                                         Medida:
                                     </td>
                                     <td>
-                                        <input class="text_area" tabindex="4" type="text" name="nu_hemoglobina" id="nu_hemoglobina" size="15" value="<?php echo $this->actividad->nu_hemoglobina; ?>" /> gr/dl
+                                        <input class="text_area" tabindex="4" type="text" name="nu_hemoglobina" id="nu_hemoglobina" size="15" value="<?php echo $this->evaluacioncontrol->nu_hemoglobina; ?>" /> gr/dl
                                     </td>
                                 </tr>
                                 <tr>
@@ -176,7 +169,7 @@
                                         Anemia:
                                     </td>
                                     <td>
-                                        <strong><?php echo $this->actividad->anemia; ?></strong>
+                                        <strong><?php echo $this->evaluacioncontrol->anemia; ?></strong>
                                     </td>
                                 </tr>
                             </table>
@@ -213,6 +206,7 @@
     <input type="hidden" name="option" value="com_nutritions" />
     <input type="hidden" name="cid[]" value="<?php echo $this->evaluacioncontrol->id_evaluacion_gestante_control; ?>" />
     <input type="hidden" name="id_evaluacion_gestante" value="<?php echo JRequest::getInt('evaluacionId', 0); ?>" />
+    <input type="hidden" name="id_entidad" value="<?php echo JRequest::getInt('personId', 0); ?>" />
     <input type="hidden" name="task" id="task" value="edit" />
     <input type="hidden" name="controller" value="pregnantcontrol" />
 </form>

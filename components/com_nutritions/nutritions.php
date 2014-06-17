@@ -14,6 +14,7 @@ require_once (JPATH_COMPONENT.DS.'tables'.DS.'discapacidades.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'actividades.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'children.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'pregnants.php');
+require_once (JPATH_COMPONENT.DS.'tables'.DS.'pregnantscontrol.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'establecimientos.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informegeneral.php');
 require_once (JPATH_COMPONENT.DS.'tables'.DS.'informetbc.php');

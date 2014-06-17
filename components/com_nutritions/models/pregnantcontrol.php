@@ -13,17 +13,23 @@ class NutritionsModelPregnantcontrol extends JModel
     function __construct()
     {
         parent::__construct();
-
         $array = JRequest::getVar('cid', 0, '', 'array');
         $this->setId((int) $array[0]);
         $evaluacionId = JRequest::getInt('evaluacionId', 0);
         if( $evaluacionId > 0 ){
             $this->setEvaluacionId($evaluacionId);
-        }
-    }
+        }        
+        $personId = JRequest::getInt('personId', 0);
+        if( $personId > 0 ){
+            $this->setPersonId($personId);
+        } }
     
     public function setEvaluacionId($evaluacionId) {
         $this->_evaluacionId = $evaluacionId;
+    }
+    
+     public function setPersonId($personId) {
+        $this->_personId = $personId;
     }
 
     function setId($id)
@@ -37,26 +43,28 @@ class NutritionsModelPregnantcontrol extends JModel
     {
         // Load the data
         if (empty( $this->_data )) {
-            $query = "select eg.id_evaluacion_gestante, eg.id_actividad, eg.de_peso_habitual, eg.fe_fur, eg.fe_pp, eg.nu_ali_animal_sem, eg.nu_ali_animal_dia, eg.nu_ali_vege_sem, eg.nu_ali_vege_dia,
-                      eg.nu_ali_ener_sem, eg.nu_ali_ener_dia, eg.nu_ali_fru_ver_sem, eg.nu_ali_fru_ver_dia, eg.in_consume_agua_segura, eg.fe_visita,
-                      eg.de_peso_actual,eg.de_talla, eg.nu_hemoglobina, eg.id_dg_imc_pg, eg.id_dg_ganancia_peso,eg.id_dg_lugar_parto,eg.fe_parto,eg.id_ubigeo_parto,eg.cod_2000_parto,eg.in_tipo_parto, eg.fe_toma_historicos,eg.nu_embarazos_anteriores,nu_partos_anteriores,
+            $query = "SELECT egc.id_evaluacion_gestante_control, eg.id_evaluacion_gestante, eg.id_actividad, eg.de_peso_habitual, eg.de_talla, eg.fe_fur, eg.fe_pp, eg.nu_ali_animal_sem, eg.nu_ali_animal_dia, eg.nu_ali_vege_sem, eg.nu_ali_vege_dia,
+                      eg.nu_ali_ener_sem, eg.nu_ali_ener_dia, eg.nu_ali_fru_ver_sem, eg.nu_ali_fru_ver_dia, eg.in_consume_agua_segura,
+                      eg.id_dg_lugar_parto,eg.fe_parto,eg.id_ubigeo_parto,eg.cod_2000_parto,eg.in_tipo_parto, eg.fe_toma_historicos,eg.nu_embarazos_anteriores,nu_partos_anteriores,
+		      egc.fe_visita, egc.de_peso_actual, egc.nu_hemoglobina, egc.id_dg_imc_pg, egc.id_dg_ganancia_peso,
                       eg.nu_partos_prematuros, eg.nu_hijos_vivos, eg.nu_molas_abortos_ectopicos, eg.id_dg_ultimo_evento,eg.id_dg_lugar_ultimo_evento,eg.fe_ultimo_evento,
                       CONCAT_WS(' - ',E.DESC_DISA, E.DESC_RED, E.DESC_ESTAB,E.cod_2000) AS establec_name,
                       CONCAT_WS(' - ',U.ubigeo_dpto, U.ubigeo_prov, U.ubigeo_dist) AS ubigeo_name   
                       FROM persona p 
-                      LEFT JOIN actividad_entidad ae on (p.id_entidad=ae.id_entidad)
-                      LEFT JOIN actividad a on (ae.id_actividad=a.id_actividad) 
-                      LEFT JOIN evaluacion_gestante eg on (a.id_actividad=eg.id_actividad)
+                      INNER JOIN actividad_entidad ae on (p.id_entidad=ae.id_entidad)
+                      INNER JOIN evaluacion_gestante eg on (ae.id_actividad=eg.id_actividad)
+		      INNER JOIN evaluacion_gestante_control egc on (eg.id_evaluacion_gestante=egc.id_evaluacion_gestante)
                       LEFT JOIN 0001_geresall_renaes AS E ON (eg.cod_2000_parto=E.cod_2000)
                       LEFT JOIN 0002_geresall_ubigeo AS U ON (eg.id_ubigeo_parto=U.id_ubigeo)
-                      WHERE eg.id_evaluacion_gestante=".$this->_id;
+                      WHERE egc.id_evaluacion_gestante_control=".$this->_id;
             //echo $query;
             $this->_db->setQuery( $query );
             $this->_data = $this->_db->loadObject();
         }
         if (!$this->_data) {
             $this->_data = new stdClass();
-            $this->_data->id_evaluacion_gestante = 0;
+            $this->_data->id_evaluacion_gestante_control = 0;
+            $this->_data->id_evaluacion_gestante = JRequest::getVar('evaluacionId', NULL);
             $this->_data->fe_visita = null;
             $this->_data->nu_edad_gestacional = null;
             $this->_data->de_peso_actual = null;
@@ -98,12 +106,12 @@ class NutritionsModelPregnantcontrol extends JModel
                   WHERE EG.id_evaluacion_gestante='.$this->_evaluacionId;
         //echo $query;
         $this->_db->setQuery( $query );
-        $persona = $this->_db->loadObject();
+        $evaluacion = $this->_db->loadObject();
         
-        return $evaluacioncontrol;
+        return $evaluacion;
     }
     
-      function &getPersona()
+    function &getPersona()
     {
         // Load persona
         $query = 'SELECT P.id_entidad, P.tx_nombres, P.fe_nacimiento, P.tx_apellido_paterno, P.tx_apellido_materno, P.in_sexo 
@@ -153,21 +161,18 @@ class NutritionsModelPregnantcontrol extends JModel
     
     public function store($data)
     {
-        $evaluacioncontrolData['id_evaluacion_gestante_control'] = $data['id_actividad'];
-        $evaluacioncontrolData['id_titulo'] = '2';
-        $evaluacioncontrolData['tx_usuario_creacion'] = 'admin';
-        if(!$evaluacioncontrolData['id_actividad']){
+        $evaluacioncontrolData['id_evaluacion_gestante_control'] = $data['id_evaluacion_gestante_control'];
+        if(!$evaluacioncontrolData['id_evaluacion_gestante_control']){
             $evaluacioncontrolData['fe_creacion'] = date('Y-m-d H:m:s');
         }else{
             $evaluacioncontrolData['fe_modificacion'] = date('Y-m-d H:m:s');
         }
-        $evaluacioncontrolRow  =& $this->getTable('actividades', '');
+        $evaluacioncontrolRow  =& $this->getTable('pregnantscontrol', '');
         // bind it to the table
         if (!$evaluacioncontrolRow->bind($evaluacioncontrolData)) {
             JError::raiseError(500, $this->_db->getErrorMsg() );
             return false;
-        }
-        
+        }        
         // Make sure the data is valid
         if (!$evaluacioncontrolRow->check()) {
             $this->setError($evaluacioncontrolRow->getError());
@@ -178,7 +183,6 @@ class NutritionsModelPregnantcontrol extends JModel
             JError::raiseError(500, $this->_db->getErrorMsg() );
             return false;
         }
-
         if($data['fe_visita']){
             $temporalArray = explode('/', $data['fe_visita']);
             $data['fe_visita'] = $temporalArray[2].'-'.$temporalArray[1].'-'.$temporalArray[0];

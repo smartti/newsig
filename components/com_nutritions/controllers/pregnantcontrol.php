@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die();
 
-class NutritionsControllerPregnant extends NutritionsController
+class NutritionsControllerPregnantcontrol extends NutritionsController
 {
 
     function __construct()
@@ -17,7 +17,7 @@ class NutritionsControllerPregnant extends NutritionsController
      */
     function edit()
     {
-        JRequest::setVar( 'view', 'pregnant' );
+        JRequest::setVar( 'view', 'pregnantcontrol' );
         parent::display();
     }
 
@@ -28,30 +28,31 @@ class NutritionsControllerPregnant extends NutritionsController
     function saveAction()
     {
         $data = JRequest::get('post');
+        $evaluacionId = JRequest::getInt('id_evaluacion_gestante', 0);
         $personId = JRequest::getInt('id_entidad', 0);
-        $model = $this->getModel('pregnant');
+        $model = $this->getModel('pregnantcontrol');
         $resultStore = $model->store($data);
         if ($resultStore) {
-            $msg = JText::_( 'Actividad Gestante Grabada!' );
+            $msg = JText::_( 'Control de Gestante Grabada!' );
         } else {
-            $msg = JText::_( 'Error al grabar actividad.' );
+            $msg = JText::_( 'Error al grabar Control de Gestante.' );
             $msg .= " " . $model->getError();
         }
         // Check the table in so it can be edited.... we are done with it anyway
         //$link = 'index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]='.$resultStore;
-        $link = "index.php?option=com_nutritions&controller=pregnant&view=pregnant&personId={$personId}&task=edit&Itemid=3&cid[]=".$resultStore;
+        $link = "index.php?option=com_nutritions&controller=pregnantcontrol&view=pregnantcontrol&evaluacionId={$evaluacionId}&personId={$personId}&task=edit&Itemid=3&cid[]=".$resultStore;
         $this->setRedirect($link, $msg);
     }
     
-    public function deleteEvaluacion() {
-        $personId = JRequest::getInt('personId', 0);
-        $evaluacionId = JRequest::getInt('id', 0);
-        $model = $this->getModel('pregnant');
-        $model->removeEvaluacion($evaluacionId);
+    public function deleteEvaluacioncontrol() {
+        $evaluacionId = JRequest::getInt('evaluacionId', 0);
+        $evaluacioncontrolId = JRequest::getInt('id', 0);
+        $model = $this->getModel('pregnantcontrol');
+        $model->removeEvaluacioncontrol($evaluacioncontrolId);
         
-        $msg = JText::_( 'Evaluacion eliminada!' );
+        $msg = JText::_( 'Control de Evaluacion eliminada!' );
         
-        $link = "index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]={$personId}";
+        $link = "index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]={$evaluacionId}";
         $this->setRedirect($link, $msg);
     }
 
@@ -61,9 +62,9 @@ class NutritionsControllerPregnant extends NutritionsController
      */
     function cancelAction()
     {
-        $personId = JRequest::getInt('id_entidad', 0);
+        $evaluacionId = JRequest::getInt('id_evaluacion_gestante', 0);
         $msg = JText::_( 'Operacion cancelada' );
-        $this->setRedirect( "index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]={$personId}", $msg );
+        $this->setRedirect( "index.php?option=com_nutritions&controller=pregnant&view=pregnant&task=edit&Itemid=3&cid[]={$evaluacionId}", $msg );
     }
         
 }

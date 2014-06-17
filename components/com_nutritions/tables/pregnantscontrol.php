@@ -13,8 +13,6 @@ class pregnantscontrol extends JTable
     /** @var datetime */
     var $fe_visita = null;
     /** @var decimal */
-    var $de_peso_habitual = null;
-    /** @var integer */
     var $nu_edad_gestacional = null;
     /** @var decimal */
     var $de_peso_actual = null;

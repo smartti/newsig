@@ -188,5 +188,7 @@ class NutritionsViewPregnant extends JView {
         $years = floor($diff / (365*60*60*24));
         return $years;
     }
+    
+    
 
 }

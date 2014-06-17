@@ -31,7 +31,9 @@
 }
 .item a:hover { background-color: white;  }
 
-.item img {  border: 0 none;  margin-top: expression((80 - this.height ) / 2);  }
+.item img {  
+    border: 0 none;  margin-top: expression((80 - this.height)/2);  
+}
 .item span {
 	display: block; width: 76px;
 	position: absolute; bottom: 0; padding: 2px;

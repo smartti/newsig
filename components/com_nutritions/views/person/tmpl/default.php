@@ -46,7 +46,10 @@
                 <td style="width: 50%;" valign="top">
                     <table style=" border-collapse: separate;  border-spacing:  12px 3px;">
                         <tr>
-                            <td>Familia ID:</td>
+                            <?php 
+                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=nutrition&view=nutrition&task=edit&Itemid=3&cid[]='. $this->persona->id_familia); 
+                            ?>
+                            <td><a href="<?php echo $showLink; ?>">Ir a Familia</a></td>                          
                             <td>
                                 <input class="text_area" type="text" name="id_familia" id="id_familia" readonly="true" size="25" value="<?php echo $this->persona->id_familia; ?>" />
                             </td>
