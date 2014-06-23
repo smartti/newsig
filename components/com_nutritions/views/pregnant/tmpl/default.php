@@ -358,15 +358,16 @@ if ($this->persona->id_entidad > 0) {
     ?>
     <fieldset>
         <legend>Controles</legend>
-        <form id="activityForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="activityForm">
+        <form id="pregnantcontrolForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="pregnantcontrolForm">
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 50%; text-align: center;">
                         <?php
                         if ($this->actividad->id_evaluacion_gestante) {
                             ?>
-                            <input type="button" name="btnPregnantControl" value="Agregar Control" onclick="javascript:document.getElementById('newTask').value = 'addPregnantControl';
-                                    document.getElementById('activityForm').submit();" />
+                            <input type="button" name="btnPregnantControl" value="Agregar Control" 
+                                   onclick="javascript:document.getElementById('newControlTask').value = 'addPregnantControl';
+                                    document.getElementById('pregnantcontrolForm').submit();" />
                                    <?php
                                } else {
                                    echo "&nbsp;";
@@ -376,8 +377,8 @@ if ($this->persona->id_entidad > 0) {
                 </tr>
             </table>
             <input type="hidden" name="option" value="com_nutritions" />
-            <input type="hidden" name="task" id="newTask" value="" />
-            <input type="hidden" name="controller" value="pregnantcontrol" />
+            <input type="hidden" name="task" id="newControlTask" value="" />
+            <input type="hidden" name="controller" value="pregnant" />
             <input type="hidden" name="evaluacionId" value="<?php echo $this->actividad->id_evaluacion_gestante; ?>" />
             <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
         </form>
@@ -404,7 +405,7 @@ if ($this->persona->id_entidad > 0) {
                 for ($i = 0, $n = count($this->pregnantcontrolResults); $i < $n; $i++) {
                     $row = &$this->pregnantcontrolResults[$i];
                     $showLink = JRoute::_("index.php?option=com_nutritions&controller=pregnantcontrol&view=pregnantcontrol&evaluacionId={$this->actividad->id_evaluacion_gestante}&personId={$this->persona->id_entidad}&task=edit&Itemid=3&cid[]=" . $row->id_evaluacion_gestante_control);
-                    $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=pregnant&task=deleteEvaluacion&personId={$this->persona->id_entidad}&id=" . $row->id_evaluacion_gestante_control);
+                    $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=pregnant&task=deleteEvaluacionControl&personId={$this->persona->id_entidad}&evaluacionId={$this->actividad->id_evaluacion_gestante}&Itemid=3&id=" . $row->id_evaluacion_gestante_control);
                     ?>
                     <tr class="<?php echo "row$k"; ?>">
                         <td style="text-align:center;">

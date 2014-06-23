@@ -51,19 +51,20 @@ class NutritionsViewPregnantcontrol extends JView {
         foreach ($imcPgs as $imcPg) {
             $imcPgArray[] = JHTML::_('select.option', $imcPg->value, JText::_($imcPg->text));
         }
-        $lists['imc_pg'] = JHTML::_('select.genericlist', $imcPgArray, 'id_dg_imc_pg', 'class="inputbox" size="1"', 'value', 'text', $actividad->id_dg_imc_pg);
+        $lists['imc_pg'] = JHTML::_('select.genericlist', $imcPgArray, 'id_dg_imc_pg', 'class="inputbox" size="1"', 'value', 'text', $evaluacioncontrol->id_dg_imc_pg);
         
         $gananciaPesoArray[] = JHTML::_('select.option', '0', '- ' . JText::_('Seleccione') . ' -');
         foreach ($gananciaPeso as $gp) {
             $gananciaPesoArray[] = JHTML::_('select.option', $gp->value, JText::_($gp->text));
         }
-        $lists['ganancia_peso'] = JHTML::_('select.genericlist', $gananciaPesoArray, 'id_dg_ganancia_peso', 'class="inputbox" size="1"', 'value', 'text', $actividad->id_dg_ganancia_peso);
+        $lists['ganancia_peso'] = JHTML::_('select.genericlist', $gananciaPesoArray, 'id_dg_ganancia_peso', 'class="inputbox" size="1"', 'value', 'text', $evaluacioncontrol->id_dg_ganancia_peso);
 
         
         $this->assignRef('lists', $lists);
+        $this->assignRef('evaluacioncontrol', $evaluacioncontrol);
         $this->assignRef('persona', $persona);
         $this->assignRef('actividad', $actividad);
-        $this->assignRef('evaluacioncontrol', $evaluacioncontrol);
+        
         parent::display($tpl);
     }
     
@@ -72,6 +73,7 @@ class NutritionsViewPregnantcontrol extends JView {
         $diff = abs(strtotime($date2) - strtotime($date1));
 
         $years = floor($diff / (365*60*60*24));
+        $this->edad_visita = $years;
         return $years;
     }
     

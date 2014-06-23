@@ -22,34 +22,6 @@ class pregnantscontrol extends JTable
     var $id_dg_imc_pg = null;
     /** @var integer */
     var $id_dg_ganancia_peso = null;
-    /** @var integer */
-    var $nu_ali_animal_sem = null;
-    /** @var integer */
-    var $nu_ali_animal_dia = null;
-    /** @var integer */
-    var $nu_ali_vege_sem = null;
-    /** @var integer */
-    var $nu_ali_vege_dia = null;
-    /** @var integer */
-    var $nu_ali_ener_sem = null;
-    /** @var integer */
-    var $nu_ali_ener_dia = null;
-    /** @var integer */
-    var $nu_ali_fru_ver_sem = null;
-    /** @var integer */
-    var $nu_ali_fru_ver_dia = null;
-    /** @var integer */
-    var $in_consume_agua_segura = null;
-    /** @var integer */
-    var $in_tipo_parto = null;
-    /** @var integer */
-    var $id_dg_lugar_parto = null;
-    /** @var date */
-    var $fe_parto = null;
-    /** @var integer */
-    var $id_ubigeo_parto = null;
-    /** @var integer */
-    var $cod_2000_parto = null;
     /** @var String */
     var $tx_usuario_creacion = null;
     /** @var date */

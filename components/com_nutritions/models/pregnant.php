@@ -14,7 +14,9 @@ class NutritionsModelPregnant extends JModel
         parent::__construct();
 
         $array = JRequest::getVar('cid', 0, '', 'array');
+        
         $this->setId((int) $array[0]);
+        
         $personId = JRequest::getInt('personId', 0);
         if( $personId > 0 ){
             $this->setPersonId($personId);
@@ -223,8 +225,7 @@ class NutritionsModelPregnant extends JModel
         if (!$row->bind($data)) {
             JError::raiseError(500, $this->_db->getErrorMsg() );
             return false;
-        }
-        
+        }        
         // Make sure the data is valid
         if (!$row->check()) {
             $this->setError($row->getError());

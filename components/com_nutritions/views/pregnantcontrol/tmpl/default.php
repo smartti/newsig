@@ -21,22 +21,28 @@
         <table style="width: 100%;">
             <tr>
                 <td style="width: 25%;">
-                    <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction'; document.getElementById('adminForm').submit();"/>
+                    <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction';
+                            document.getElementById('adminForm').submit();"/>
                 </td>
                 <td>
                     &nbsp;
                 </td>
                 <td style="width: 25%;">
-                    <input type="button" value="Limpiar" onclick="javascript:document.getElementById('task').value = 'cleanAction'; document.getElementById('adminForm').submit();"/>
+                    <input type="button" value="Limpiar" onclick="javascript:document.getElementById('task').value = 'cleanAction';
+                            document.getElementById('adminForm').submit();"/>
                 </td>
                 <td style="width: 25%;">
-                    <input type="button" value="Cancelar" onclick="javascript:document.getElementById('task').value = 'cancelAction'; document.getElementById('adminForm').submit();"/>
+                    <input type="button" value="Cancelar" onclick="javascript:document.getElementById('task').value = 'cancelAction';
+                            document.getElementById('adminForm').submit();"/>
                 </td>
             </tr>
         </table>
     </fieldset>
 
     <fieldset>
+<?php
+$PregnantLink = JRoute::_('index.php?option=com_nutritions&controller=pregnant&view=pregnant&personId='.$this->persona->id_entidad.'&task=edit&Itemid=3&cid[]='.$this->actividad->id_evaluacion_gestante);
+?>
         <legend>Evaluaci&oacute;n Nutricional de Gestante</legend>
 
         <fieldset>
@@ -54,25 +60,25 @@
                             <tr>
                                 <td>Nombres:</td>
                                 <td>
-                                    <input class="text_area" tabindex="1" type="text" name="tx_nombres" id="tx_nombres" readonly="true" size="25" value="<?php echo $this->persona->tx_nombres; ?>" />
+                                    <input readonly="true" class="text_area" tabindex="1" type="text" name="tx_nombres" id="tx_nombres" readonly="true" size="25" value="<?php echo $this->persona->tx_nombres; ?>" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Ap. Paterno:</td>
                                 <td>
-                                    <input class="text_area" tabindex="3" type="text" readonly="true" name="tx_apellido_paterno" id="tx_apellido_paterno" size="25" value="<?php echo $this->persona->tx_apellido_paterno; ?>" />
+                                    <input readonly="true" class="text_area" tabindex="3" type="text" readonly="true" name="tx_apellido_paterno" id="tx_apellido_paterno" size="25" value="<?php echo $this->persona->tx_apellido_paterno; ?>" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Fecha Nacimiento:</td>
                                 <td>
-                                    <?php echo JHTML::_('calendar', $this->persona->fe_nacimiento, "fe_nacimiento", "fe_nacimiento", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'readonly' => 'true', 'maxlength' => '10', 'tabindex' => '5')); ?>
+<?php echo JHTML::_('calendar', $this->persona->fe_nacimiento, "fe_nacimiento", "fe_nacimiento", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'readonly' => 'true', 'maxlength' => '10', 'tabindex' => '5')); ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Peso Habitual:</td>
                                 <td>
-                                    <input class="text_area" tabindex="4" type="text" name="de_peso_habitual" id="de_peso_habitual" size="15" value="<?php echo $this->actividad->de_peso_habitual; ?>" /> Kg.
+                                    <input readonly="true" class="text_area" tabindex="4" type="text" name="de_peso_habitual" id="de_peso_habitual" size="15" value="<?php echo $this->actividad->de_peso_habitual; ?>" /> Kg.
                                 </td>
                             </tr>
                         </table>
@@ -80,18 +86,18 @@
                     <td style="width: 50%;" valign="top">
                         <table>
                             <tr>
-                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2"><a href="<?php echo $PregnantLink; ?>">Regresar a Evaluación</a></td>
                             </tr>
                             <tr>
                                 <td>Edad:</td>
                                 <td>
-                                    <input class="text_area" tabindex="2" type="text" name="txtEdad" id="txEdad" readonly="true" size="25" value="<?php echo $this->actividad->edad_visita; ?>" />
+                                    <input readonly="true" class="text_area" tabindex="2" type="text" name="txtEdad" id="txEdad" readonly="true" size="25" value="<?php echo $this->actividad->edad_visita; ?>" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Ap. Materno:</td>
                                 <td>
-                                    <input class="text_area" tabindex="4" type="text" readonly="true" name="tx_apellido_materno" id="tx_apellido_materno" size="25" value="<?php echo $this->persona->tx_apellido_materno; ?>" />
+                                    <input readonly="true" class="text_area" tabindex="4" type="text" readonly="true" name="tx_apellido_materno" id="tx_apellido_materno" size="25" value="<?php echo $this->persona->tx_apellido_materno; ?>" />
                                 </td>
                             </tr>
                             <tr>
@@ -99,14 +105,14 @@
                                     Talla:
                                 </td>
                                 <td>
-                                    <input class="text_area" tabindex="3" type="text" name="de_talla" id="de_talla" size="15" value="<?php echo $this->actividad->de_talla; ?>" /> cm.
+                                    <input readonly="true" class="text_area" tabindex="3" type="text" name="de_talla" id="de_talla" size="15" value="<?php echo $this->actividad->de_talla; ?>" /> cm.
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td>Fecha problable de parto (FPP):</td>
                                 <td>
-                                    <?php echo JHTML::_('calendar', $this->actividad->fe_pp, "fe_pp", "fe_pp", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '1')); ?>
+<?php echo JHTML::_('calendar', $this->actividad->fe_pp, "fe_pp", "fe_pp", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '1')); ?>
                                 </td>
                             </tr>
                         </table>
@@ -116,8 +122,8 @@
         </fieldset>
 
         <fieldset>
-            <legend>Evaluaci&oacute;n Nutricional de la Gestante</legend>
-            
+            <legend>Control de Evaluaci&oacute;n Nutricional de la Gestante</legend>
+
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 50%;" valign="top" >
@@ -129,7 +135,7 @@
                                         Fecha Visita:
                                     </td>
                                     <td>
-                                        <?php echo JHTML::_('calendar', $this->evaluacioncontrol->fe_visita, "fe_visita", "fe_visita", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '2')); ?>
+<?php echo JHTML::_('calendar', $this->evaluacioncontrol->fe_visita, "fe_visita", "fe_visita", "%d/%m/%Y", array('class' => 'inputbox', 'size' => '10', 'maxlength' => '10', 'tabindex' => '2')); ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -137,7 +143,7 @@
                                         Edad fecha visita:
                                     </td>
                                     <td>
-                                        <input class="text_area" tabindex="3" type="text" name="txtEdadVisita" id="txtEdadVisita" size="15" value="<?php echo $this->evaluacioncontrol->edad_visita; ?>" />
+                                        <input readonly="true" class="text_area" tabindex="3" type="text" name="txtEdadVisita" id="txtEdadVisita" size="15" value="<?php echo $this->edad_visita; ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -193,18 +199,19 @@
                                 <?php echo $this->lists['imc_pg'] ?>
                             </td>
                             <td align="center">
-                                <?php echo $this->lists['ganancia_peso'] ?>
+<?php echo $this->lists['ganancia_peso'] ?>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </fieldset>
-            
+
         </fieldset>
 
     </fieldset>
     <input type="hidden" name="option" value="com_nutritions" />
     <input type="hidden" name="cid[]" value="<?php echo $this->evaluacioncontrol->id_evaluacion_gestante_control; ?>" />
+    <input type="hidden" name="id_evaluacion_gestante_control" value="<?php echo $this->evaluacioncontrol->id_evaluacion_gestante_control; ?>" />
     <input type="hidden" name="id_evaluacion_gestante" value="<?php echo JRequest::getInt('evaluacionId', 0); ?>" />
     <input type="hidden" name="id_entidad" value="<?php echo JRequest::getInt('personId', 0); ?>" />
     <input type="hidden" name="task" id="task" value="edit" />

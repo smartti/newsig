@@ -138,6 +138,8 @@ function validatePerson() {
         document.getElementById('establec').style.border = 'solid 0.5px red';
         return false;
     }
+    document.getElementById('task').value = 'saveAction';
+    document.getElementById('adminForm').submit();
 }
 
 function soloLetras(e) {
