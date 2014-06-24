@@ -15,12 +15,20 @@ class NutritionsViewPregnant extends JView {
         $document->addScript(JURI::base().'components/com_nutritions/assets/js/bsn.AutoSuggest_2.1.3.js');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
-
+        
+        require_once (JPATH_COMPONENT.DS.'assets'.DS.'files'.DS.'jpgraph'.DS.'src'.DS.'jpgraph.php');
+        require_once (JPATH_COMPONENT.DS.'assets'.DS.'files'.DS.'jpgraph'.DS.'src'.DS.'jpgraph_bar.php');
         
         $actividad = & $this->get('Data');
         $persona = & $this->get('Persona');
+//        $grafica = $ $this->get('Grafica');
         
-         if( $actividad->id_evaluacion_gestante ){
+        if( $actividad->id_evaluacion_gestante ){
+            $grafica = $model->grafico($actividad->id_evaluacion_gestante);
+        }
+        
+        
+        if( $actividad->id_evaluacion_gestante ){
             $pregnantcontrolResults = $model->getEvaluacioncontrol($actividad->id_evaluacion_gestante);
         }
         if($persona->fe_nacimiento){
@@ -170,6 +178,8 @@ class NutritionsViewPregnant extends JView {
         $this->assignRef('persona', $persona);
         $this->assignRef('actividad', $actividad);
         $this->assignRef('pregnantcontrolResults', $pregnantcontrolResults);
+//        $this->assignRef('grafica', $grafica);    
+                
         parent::display($tpl);
     }
     

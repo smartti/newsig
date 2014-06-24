@@ -1,5 +1,4 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
-
 <style type="text/css">
     .input-wrapper {
         padding: .2em;
@@ -105,7 +104,7 @@
                                     <input class="text_area" tabindex="3" type="text" name="de_talla" id="de_talla" size="15" value="<?php echo $this->actividad->de_talla; ?>" /> cm.
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td>Fecha problable de parto (FPP):</td>
                                 <td>
@@ -115,7 +114,7 @@
                         </table>
                     </td>
                 </tr>
-                
+
             </table>
         </fieldset>
         <fieldset>
@@ -367,7 +366,7 @@ if ($this->persona->id_entidad > 0) {
                             ?>
                             <input type="button" name="btnPregnantControl" value="Agregar Control" 
                                    onclick="javascript:document.getElementById('newControlTask').value = 'addPregnantControl';
-                                    document.getElementById('pregnantcontrolForm').submit();" />
+                                                   document.getElementById('pregnantcontrolForm').submit();" />
                                    <?php
                                } else {
                                    echo "&nbsp;";
@@ -386,6 +385,7 @@ if ($this->persona->id_entidad > 0) {
         if (count($this->pregnantcontrolResults) > 0) {
             ?>
             <table border="1" style="width: 100%;">
+
                 <thead>
                     <tr>
                         <th>#</th>
@@ -467,4 +467,15 @@ if ($this->persona->id_entidad > 0) {
     <?php
 }
 ?>
+<fieldset>
+    <legend>Gráfica</legend>
+    <table>
+        <tr>
+            <td>
+                <?php echo grafica(); ?>
+            </td>
+        </tr>
+    </table> 
+</fieldset>
+
 
