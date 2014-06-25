@@ -741,7 +741,6 @@ class Graph {
         $rm = $rm ==0 ? floor(0.1 * $this->img->width)  : $rm ;
         $tm = $tm ==0 ? floor(0.2 * $this->img->height) : $tm ;
         $bm = $bm ==0 ? floor(0.1 * $this->img->height) : $bm ;
-
         $adj = ($this->img->height - $this->img->width)/2;
         $this->img->SetMargin($tm-$adj,$bm-$adj,$rm+$adj,$lm+$adj);
         $this->img->SetCenter(floor($this->img->width/2),floor($this->img->height/2));

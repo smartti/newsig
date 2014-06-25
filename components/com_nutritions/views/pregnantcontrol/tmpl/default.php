@@ -89,7 +89,7 @@ $PregnantLink = JRoute::_('index.php?option=com_nutritions&controller=pregnant&v
                                 <td colspan="2"><a href="<?php echo $PregnantLink; ?>">Regresar a Evaluación</a></td>
                             </tr>
                             <tr>
-                                <td>Edad:</td>
+                                <td>Edad al inicio Evaluación:</td>
                                 <td>
                                     <input readonly="true" class="text_area" tabindex="2" type="text" name="txtEdad" id="txEdad" readonly="true" size="25" value="<?php echo $this->actividad->edad_visita; ?>" />
                                 </td>

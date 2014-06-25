@@ -16,16 +16,16 @@ class NutritionsViewPregnant extends JView {
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/style.css');
         $document->addStyleSheet(JURI::base().'components/com_nutritions/assets/css/autosuggest_inquisitor.css');
         
-        require_once (JPATH_COMPONENT.DS.'assets'.DS.'files'.DS.'jpgraph'.DS.'src'.DS.'jpgraph.php');
-        require_once (JPATH_COMPONENT.DS.'assets'.DS.'files'.DS.'jpgraph'.DS.'src'.DS.'jpgraph_bar.php');
-        
+//        require_once (JPATH_COMPONENT.DS.'assets'.DS.'files'.DS.'jpgraph'.DS.'src'.DS.'jpgraph.php');
+//        require_once (JPATH_COMPONENT.DS.'assets'.DS.'files'.DS.'jpgraph'.DS.'src'.DS.'jpgraph_bar.php');
+//        
         $actividad = & $this->get('Data');
         $persona = & $this->get('Persona');
 //        $grafica = $ $this->get('Grafica');
         
-        if( $actividad->id_evaluacion_gestante ){
-            $grafica = $model->grafico($actividad->id_evaluacion_gestante);
-        }
+//        if( $actividad->id_evaluacion_gestante ){
+//            $grafica = $model->grafico($actividad->id_evaluacion_gestante);
+//        }
         
         
         if( $actividad->id_evaluacion_gestante ){

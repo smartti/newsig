@@ -298,8 +298,7 @@ class NutritionsModelPregnant extends JModel {
             $ladox[] = $row->id_evaluacion_gestante_control;
             $ladoy[] = $row->de_peso_actual;
         }
-// Creamos el grafico
-       
+// Creamos el grafico       
         $grafico = new Graph(500, 400, 'auto');
         $grafico->SetScale("textint");
         $grafico->SetShadow();

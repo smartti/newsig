@@ -47,8 +47,11 @@
                 <tr>
                     <td style="width: 50%;" valign="top">
                         <table>
+                             <?php 
+                            $showPerson = JRoute::_('index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]='. $this->persona->id_entidad); 
+                            ?>                                 
                             <tr>
-                                <td>Persona ID:</td>
+                                <td><a href="<?php echo $showPerson; ?>">Ir a Persona:</a></td>
                                 <td>
                                     <input class="text_area" type="text" name="id_entidad" id="id_entidad" readonly="true" size="25" value="<?php echo $this->persona->id_entidad; ?>" />
                                 </td>
@@ -471,8 +474,10 @@ if ($this->persona->id_entidad > 0) {
     <legend>Gráfica</legend>
     <table>
         <tr>
-            <td>
-                <?php echo grafica(); ?>
+            <td><?php                
+                $showgraph = JRoute::_("index.php?option=com_nutritions&controller=pregnantgraph&view=pregnantgraph&Itemid=3&cid[]=". $this->actividad->id_evaluacion_gestante);
+                ?>
+                <img src="<?php echo $showgraph ?>" alt="" border="0">
             </td>
         </tr>
     </table> 

@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die();
 
-class NutritionsControllerPregnant extends NutritionsController
+class NutritionsControllerPregnantgraph extends NutritionsController
 {
 
     function __construct()
@@ -17,7 +17,7 @@ class NutritionsControllerPregnant extends NutritionsController
      */
     function edit()
     {
-        JRequest::setVar( 'view', 'pregnant' );
+        JRequest::setVar( 'view', 'pregnantgraph' );
         parent::display();
     }
     

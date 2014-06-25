@@ -53,6 +53,7 @@ class NutritionsModelGeoreferencias extends JModel {
         $distritoId = JRequest::getInt('filter_distrito', 0);
         $familiaId = JRequest::getInt('id_familia', 0);
         $apellidos = JRequest::getVar('tx_apellidos', null);
+//        $objetivo = JRequest::getVar('objetivo', null);
         
         $ubigeoId = 0;
         
