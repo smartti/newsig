@@ -13,19 +13,19 @@ class NutritionsModelGeoreferencias extends JModel {
      * @var array
      */
     var $_data;
-    
+
     public function getDepartamentos() {
         $query = "SELECT id_ubigeo as value, tx_descripcion as text FROM ubigeo WHERE id_dg_nivel = '2'";
         $this->_db->setQuery($query);
         $departamentos = $this->_db->loadObjectList();
         return $departamentos;
-    }
+    }    
     
     public function getProvincias() {
         global $mainframe, $option;
-        $filter_departamento = $mainframe->getUserStateFromRequest( $option.'.nutritions.filter_departamento','filter_departamento', '0', 'int' );
+        $filter_departamento = $mainframe->getUserStateFromRequest($option . '.nutritions.filter_departamento', 'filter_departamento', '0', 'int');
         $where = '';
-        if($filter_departamento > 0){
+        if ($filter_departamento > 0) {
             $where = "AND id_ubigeo_padre = '{$filter_departamento}'";
         }
         $query = "SELECT id_ubigeo as value, tx_descripcion as text FROM ubigeo WHERE id_dg_nivel = '3' {$where}";
@@ -33,12 +33,12 @@ class NutritionsModelGeoreferencias extends JModel {
         $provincias = $this->_db->loadObjectList();
         return $provincias;
     }
-    
+
     public function getDistritos() {
         global $mainframe, $option;
-        $filter_provincia = $mainframe->getUserStateFromRequest( $option.'.nutritions.filter_provincia','filter_provincia', '0', 'int' );
+        $filter_provincia = $mainframe->getUserStateFromRequest($option . '.nutritions.filter_provincia', 'filter_provincia', '0', 'int');
         $where = '';
-        if($filter_provincia > 0){
+        if ($filter_provincia > 0) {
             $where = "AND id_ubigeo_padre = '{$filter_provincia}'";
         }
         $query = "SELECT id_ubigeo as value, tx_descripcion as text FROM ubigeo WHERE id_dg_nivel = '4' $where";
@@ -46,46 +46,81 @@ class NutritionsModelGeoreferencias extends JModel {
         $distritos = $this->_db->loadObjectList();
         return $distritos;
     }
-        
-        public function getSearchResults() {
+    
+    public function getTitulos() {
+        $query = "SELECT id_titulo as value, tx_descripcion as text FROM titulo";
+        $this->_db->setQuery($query);
+        $titulos = $this->_db->loadObjectList();
+        return $titulos;
+    }
+
+    public function getSearchResults() {
         $departamentoId = JRequest::getInt('filter_departamento', 0);
         $provinciaId = JRequest::getInt('filter_provincia', 0);
         $distritoId = JRequest::getInt('filter_distrito', 0);
+        $titulo = JRequest::getInt('filter_titulo', 0);
         $familiaId = JRequest::getInt('id_familia', 0);
         $apellidos = JRequest::getVar('tx_apellidos', null);
-//        $objetivo = JRequest::getVar('objetivo', null);
         
+
         $ubigeoId = 0;
-        
-        if($departamentoId > 0){
+
+        if ($departamentoId > 0) {
             $ubigeoId = $departamentoId;
-            if($provinciaId > 0){
+            if ($provinciaId > 0) {
                 $ubigeoId = $provinciaId;
-                if($distritoId > 0){
+                if ($distritoId > 0) {
                     $ubigeoId = $distritoId;
                 }
             }
         }
-        
+
         $where = array();
+
+//        if( $ubigeoId > 0 ){
+//            $where[] = "D.un_latitud !=0 AND D.id_ubigeo LIKE '{$ubigeoId}%' ";
+//        }
+//        if($apellidos){
+//            $where[] = " F.tx_apellidos LIKE '%{$apellidos}%' ";
+//        }
+//        if($familiaId > 0){
+//            $where[] = " F.id_familia = '{$familiaId}' ";
+//        }
+//        
+//        $where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
+//        
+//        $query = "SELECT F.id_familia, F.tx_apellidos, F.fe_visita1, V.ubigeo_dpto, V.ubigeo_prov, V.ubigeo_dist, D.un_latitud, D.un_longitud
+//                  FROM familia as F 
+//                  LEFT JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
+//                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)  {$where}";
         
-        if( $ubigeoId > 0 ){
-            $where[] = "D.un_latitud !=0 AND D.id_ubigeo LIKE '{$ubigeoId}%' ";
+        $where[] = "D.un_latitud !=0 ";
+        
+        if ($ubigeoId > 0) {
+            $where[] = "D.id_ubigeo LIKE '{$ubigeoId}%' ";
         }
-        if($apellidos){
+        if ($apellidos) {
             $where[] = " F.tx_apellidos LIKE '%{$apellidos}%' ";
         }
-        if($familiaId > 0){
+        if ($titulo > 0) {
+            $where[] = " a.id_titulo = '{$titulo}' ";
+        }
+        if ($familiaId > 0) {
             $where[] = " F.id_familia = '{$familiaId}' ";
         }
-        
-        $where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
-        
-        $query = "SELECT F.id_familia, F.tx_apellidos, F.fe_visita1, V.ubigeo_dpto, V.ubigeo_prov, V.ubigeo_dist, D.un_latitud, D.un_longitud
+
+        $where = ( count($where) ? ' WHERE ' . implode(' AND ', $where) : '' );
+
+        $query = "SELECT DISTINCT F.id_familia, F.tx_apellidos, F.fe_visita1, V.ubigeo_dpto, V.ubigeo_prov, V.ubigeo_dist,
+                  D.un_latitud, D.un_longitud, t.tx_descripcion
                   FROM familia as F 
-                  LEFT JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
-                  LEFT JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)  {$where}";
-        
+                  INNER JOIN direccion_familia D ON (F.id_familia = D.id_familia) 
+                  INNER JOIN 0002_geresall_ubigeo V ON (D.id_ubigeo = V.id_ubigeo)
+                  INNER JOIN persona p ON (F.id_familia=p.id_familia)
+		  LEFT JOIN actividad_entidad ae on (p.id_entidad=ae.id_entidad)
+                  LEFT JOIN actividad a on (ae.id_actividad=a.id_actividad)
+                  LEFT JOIN titulo t on (a.id_titulo=t.id_titulo) {$where}";
+
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();
         return $results;

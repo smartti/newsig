@@ -47,8 +47,8 @@
                 <tr>
                     <td style="width: 50%;" valign="top">
                         <table>
-                             <?php 
-                            $showPerson = JRoute::_('index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]='. $this->persona->id_entidad); 
+                            <?php
+                            $showPerson = JRoute::_('index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]=' . $this->persona->id_entidad);
                             ?>                                 
                             <tr>
                                 <td><a href="<?php echo $showPerson; ?>">Ir a Persona:</a></td>
@@ -369,7 +369,7 @@ if ($this->persona->id_entidad > 0) {
                             ?>
                             <input type="button" name="btnPregnantControl" value="Agregar Control" 
                                    onclick="javascript:document.getElementById('newControlTask').value = 'addPregnantControl';
-                                                   document.getElementById('pregnantcontrolForm').submit();" />
+                                           document.getElementById('pregnantcontrolForm').submit();" />
                                    <?php
                                } else {
                                    echo "&nbsp;";
@@ -470,17 +470,23 @@ if ($this->persona->id_entidad > 0) {
     <?php
 }
 ?>
-<fieldset>
-    <legend>Gráfica</legend>
-    <table>
-        <tr>
-            <td><?php                
-                $showgraph = JRoute::_("index.php?option=com_nutritions&controller=pregnantgraph&view=pregnantgraph&Itemid=3&cid[]=". $this->actividad->id_evaluacion_gestante);
-                ?>
-                <img src="<?php echo $showgraph ?>" alt="" border="0">
-            </td>
-        </tr>
-    </table> 
-</fieldset>
+<?php
+if (count($this->pregnantcontrolResults) > 1) {
+    ?>
+    <fieldset>
+        <legend>Gráfica</legend>
+        <table>
+            <tr>
+                <td><?php
+                    $showgraph = JRoute::_("index.php?option=com_nutritions&controller=pregnantgraph&view=pregnantgraph&Itemid=3&cid[]=" . $this->actividad->id_evaluacion_gestante);
+                    ?>
+                    <img src="<?php echo $showgraph ?>" alt="" border="0">
+                </td>
+            </tr>
+        </table> 
+    </fieldset>
+    <?php
+}
+?>
 
 

@@ -112,7 +112,10 @@ $ordering = 1;
                     <td>
     <?php echo $this->lists['Distritos']; ?>
                     </td>
-                    <td colspan="2">&nbsp;</td>
+                    <td>Objetivo:</td>
+                    <td>
+    <?php echo $this->lists['Titulos']; ?>
+                    </td>
                 </tr>
             </table>
         </fieldset>
@@ -160,6 +163,9 @@ $ordering = 1;
                             Longitud
                         </th>
                         <th>
+                            Objetivo
+                        </th>
+                        <th>
                             Ver
                         </th>
                     </tr>		
@@ -197,6 +203,9 @@ $ordering = 1;
                         </td>
                         <td>
                             <?php echo $row->un_longitud; ?>
+                        </td>
+                        <td>
+                            <?php echo $row->tx_descripcion; ?>
                         </td>
                         <td>
                             <a href="<?php echo $link; ?>">Ver</a>

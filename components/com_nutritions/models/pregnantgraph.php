@@ -80,7 +80,7 @@ class NutritionsModelPregnantgraph extends JModel {
                   INNER JOIN evaluacion_gestante_control GC ON ( GC.id_evaluacion_gestante = EN.id_evaluacion_gestante )
                   LEFT JOIN detalle_general AS D1 ON ( GC.id_dg_imc_pg = D1.id_detalle_general ) 
                   LEFT JOIN detalle_general AS D2 ON ( GC.id_dg_ganancia_peso = D2.id_detalle_general ) 
-                  WHERE EN.id_evaluacion_gestante= {$evaluacionId}";
+                  WHERE EN.id_evaluacion_gestante= {$evaluacionId} ORDER BY GC.fe_visita ASC";
 
         $this->_db->setQuery($query);
         $results = $this->_db->loadObjectList();

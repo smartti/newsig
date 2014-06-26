@@ -46,8 +46,8 @@
                 <td style="width: 50%;" valign="top">
                     <table style=" border-collapse: separate;  border-spacing:  12px 3px;">
                         <tr>
-                            <?php 
-                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=nutrition&view=nutrition&task=edit&Itemid=3&cid[]='. $this->persona->id_familia); 
+                            <?php
+                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=nutrition&view=nutrition&task=edit&Itemid=3&cid[]=' . $this->persona->id_familia);
                             ?>
                             <td><a href="<?php echo $showLink; ?>">Ir a Familia</a></td>                          
                             <td>
@@ -310,144 +310,144 @@
     <tr>
         <?php
         if ($this->persona->id_entidad > 0) {
-        ?>
-        <td width="49%">
-            <fieldset>
-                <legend>Discapacidad&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_discapacidad();"></a></legend>
-                <form id="discapacidadForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="discapacidadForm">
-                    <div style="text-align: left;">
+            ?>
+            <td width="49%">
+                <fieldset>
+                    <legend>Discapacidad&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_discapacidad();"></a></legend>
+                    <form id="discapacidadForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="discapacidadForm">
+                        <div style="text-align: left;">
 
-                    </div>
-                    <input type="hidden" name="option" value="com_nutritions" />
-                    <input type="hidden" name="task" id="disTask" value="" />
-                    <input type="hidden" name="controller" value="person" />
-                    <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
-                </form>
-                <table  border="0" width="100%" class="tableg">
-                    <thead>
-                        <tr>
-                            <th width="70%">                     
-                            </th>
-                            <th width="10%">
-                            </th>    
-                            <th width="10%">                    
-                            </th>
-                            <th width="10%">                    
-                            </th>
-                        </tr>		
-                    </thead>
-                    <?php
-                    if (count($this->discapacidadResults) > 0) {
-                        ?>
-                        <?php
-                        $k = 0;
-                        for ($i = 0, $n = count($this->discapacidadResults); $i < $n; $i++) {
-                            $row = &$this->discapacidadResults[$i];
-                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=discapacidad&view=discapacidad&task=edit&Itemid=3&cid[]=' . $row->id_discapacidad);
-                            $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=person&task=deletediscapacidad&personId={$this->persona->id_entidad}&Itemid=3&id=" . $row->id_discapacidad);
-                            ?>
+                        </div>
+                        <input type="hidden" name="option" value="com_nutritions" />
+                        <input type="hidden" name="task" id="disTask" value="" />
+                        <input type="hidden" name="controller" value="person" />
+                        <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
+                    </form>
+                    <table  border="0" width="100%" class="tableg">
+                        <thead>
                             <tr>
-
-                                <td>
-                                    <?php echo $row->tx_descripcion; ?>
-                                </td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <a class="glyphicon glyphicon-pencil" href="<?php echo $showLink; ?>" />
-                                </td>
-                                <td>
-
-                                    <a class="glyphicon glyphicon-minus"  href="#" onclick="verifyDelete_discapacidad(<?php echo $row->id_discapacidad ?>,<?php echo $this->persona->id_entidad ?>);
-                                            return false;" />
-                                </td>
-
-
-                            </tr>
+                                <th width="70%">                     
+                                </th>
+                                <th width="10%">
+                                </th>    
+                                <th width="10%">                    
+                                </th>
+                                <th width="10%">                    
+                                </th>
+                            </tr>		
+                        </thead>
+                        <?php
+                        if (count($this->discapacidadResults) > 0) {
+                            ?>
                             <?php
-                            $k = 1 - $k;
+                            $k = 0;
+                            for ($i = 0, $n = count($this->discapacidadResults); $i < $n; $i++) {
+                                $row = &$this->discapacidadResults[$i];
+                                $showLink = JRoute::_('index.php?option=com_nutritions&controller=discapacidad&view=discapacidad&task=edit&Itemid=3&cid[]=' . $row->id_discapacidad);
+                                $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=person&task=deletediscapacidad&personId={$this->persona->id_entidad}&Itemid=3&id=" . $row->id_discapacidad);
+                                ?>
+                                <tr>
+
+                                    <td>
+                                        <?php echo $row->tx_descripcion; ?>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <a class="glyphicon glyphicon-pencil" href="<?php echo $showLink; ?>" />
+                                    </td>
+                                    <td>
+
+                                        <a class="glyphicon glyphicon-minus"  href="#" onclick="verifyDelete_discapacidad(<?php echo $row->id_discapacidad ?>,<?php echo $this->persona->id_entidad ?>);
+                                                return false;" />
+                                    </td>
+
+
+                                </tr>
+                                <?php
+                                $k = 1 - $k;
+                            }
+                            ?>
+                            <?php
                         }
                         ?>
-                        <?php
-                    }
-                    ?>
-                </table>
+                    </table>
 
-            </fieldset>
-        </td>
-        <?php }?>
+                </fieldset>
+            </td>
+        <?php } ?>
         <td width="2%"></td>
         <?php
         if ($this->persona->id_entidad > 0) {
-        ?>
-        <td width="49%">
-            <fieldset>
-                <legend>Riesgo&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_riesgo();"></a></legend>
-                <form id="riesgoForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="riesgoForm">
-                    <div style="text-align: left;">
+            ?>
+            <td width="49%">
+                <fieldset>
+                    <legend>Riesgo&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-plus" href="#" onclick="crear_riesgo();"></a></legend>
+                    <form id="riesgoForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="riesgoForm">
+                        <div style="text-align: left;">
 
-                    </div>
-                    <input type="hidden" name="option" value="com_nutritions" />
-                    <input type="hidden" name="task" id="rieTask" value="" />
-                    <input type="hidden" name="controller" value="person" />
-                    <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
-                </form>
-                <table  border="0" width="100%" class="tableg">
-                    <thead>
-                        <tr>
-                            <th width="70%">                     
-                            </th>
-                            <th width="10%">
-                            </th>    
-                            <th width="10%">                    
-                            </th>
-                            <th width="10%">                    
-                            </th>
-                        </tr>		
-                    </thead>
-                    <?php
-                    if (count($this->riesgoResults) > 0) {
-                        ?>
-                        <?php
-                        $k = 0;
-                        for ($i = 0, $n = count($this->riesgoResults); $i < $n; $i++) {
-                            $row = &$this->riesgoResults[$i];
-                            $showLink = JRoute::_('index.php?option=com_nutritions&controller=riesgo&view=riesgo&task=edit&Itemid=3&cid[]=' . $row->id_riesgo);
-                            $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=person&task=deleteriesgo&personId={$this->persona->id_entidad}&Itemid=3&id=" . $row->id_riesgo);
-                            ?>
+                        </div>
+                        <input type="hidden" name="option" value="com_nutritions" />
+                        <input type="hidden" name="task" id="rieTask" value="" />
+                        <input type="hidden" name="controller" value="person" />
+                        <input type="hidden" name="personId" value="<?php echo $this->persona->id_entidad; ?>" />
+                    </form>
+                    <table  border="0" width="100%" class="tableg">
+                        <thead>
                             <tr>
-
-                                <td>
-                                    <?php echo $row->tx_descripcion; ?>
-                                </td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <a class="glyphicon glyphicon-pencil" href="<?php echo $showLink; ?>" />
-                                </td>
-                                <td>
-
-                                    <a class="glyphicon glyphicon-minus"  href="#" onclick="verifyDelete_riesgo(<?php echo $row->id_riesgo ?>,<?php echo $this->persona->id_entidad ?>);
-                                            return false;" />
-                                </td>
-
-
-                            </tr>
+                                <th width="70%">                     
+                                </th>
+                                <th width="10%">
+                                </th>    
+                                <th width="10%">                    
+                                </th>
+                                <th width="10%">                    
+                                </th>
+                            </tr>		
+                        </thead>
+                        <?php
+                        if (count($this->riesgoResults) > 0) {
+                            ?>
                             <?php
-                            $k = 1 - $k;
+                            $k = 0;
+                            for ($i = 0, $n = count($this->riesgoResults); $i < $n; $i++) {
+                                $row = &$this->riesgoResults[$i];
+                                $showLink = JRoute::_('index.php?option=com_nutritions&controller=riesgo&view=riesgo&task=edit&Itemid=3&cid[]=' . $row->id_riesgo);
+                                $deleteLink = JRoute::_("index.php?option=com_nutritions&controller=person&task=deleteriesgo&personId={$this->persona->id_entidad}&Itemid=3&id=" . $row->id_riesgo);
+                                ?>
+                                <tr>
+
+                                    <td>
+                                        <?php echo $row->tx_descripcion; ?>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <a class="glyphicon glyphicon-pencil" href="<?php echo $showLink; ?>" />
+                                    </td>
+                                    <td>
+
+                                        <a class="glyphicon glyphicon-minus"  href="#" onclick="verifyDelete_riesgo(<?php echo $row->id_riesgo ?>,<?php echo $this->persona->id_entidad ?>);
+                                                return false;" />
+                                    </td>
+
+
+                                </tr>
+                                <?php
+                                $k = 1 - $k;
+                            }
+                            ?>
+                            <?php
                         }
                         ?>
-                        <?php
-                    }
-                    ?>
-                </table>
+                    </table>
 
-            </fieldset>
-        </td></tr>
-        <?php }?>
+                </fieldset>
+            </td></tr>
+    <?php } ?>
 </table>
 
 <?php
 if ($this->persona->id_entidad > 0) {
-?>
+    ?>
     <fieldset>
         <legend>Actividades</legend>
         <form id="activityForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="activityForm">
@@ -571,7 +571,23 @@ if ($this->persona->id_entidad > 0) {
                     ?>
                 </table>
             </fieldset>
+        <?php
+        if (count($this->childResults) > 1) {
+            ?>
+            <fieldset>
+                <legend>Gráfica</legend>
+                <table>
+                    <tr>
+                        <td><?php
+                            $showgraph = JRoute::_("index.php?option=com_nutritions&controller=childgraph&view=childgraph&Itemid=3&cid[]=" . $this->persona->id_entidad);
+                            ?>
+                            <img src="<?php echo $showgraph ?>" alt="" border="0">
+                        </td>
+                    </tr>
+                </table> 
+            </fieldset>
             <?php
+        }
         }
         ?>
 
@@ -664,7 +680,7 @@ if ($this->persona->id_entidad > 0) {
 
     </fieldset>
 
-<?php
+    <?php
 }
 ?>
 
