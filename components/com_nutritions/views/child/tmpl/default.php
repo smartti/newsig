@@ -45,8 +45,11 @@
                 <tr>
                     <td style="width: 50%;" valign="top">
                         <table>
+                            <?php
+                            $showPerson = JRoute::_('index.php?option=com_nutritions&controller=person&view=person&task=edit&Itemid=3&cid[]=' . $this->persona->id_entidad);
+                            ?>                                 
                             <tr>
-                                <td>Persona ID:</td>
+                                <td><a href="<?php echo $showPerson; ?>">Ir a Persona:</a></td>
                                 <td>
                                     <input class="text_area" type="text" name="id_entidad" id="id_entidad" readonly="true" size="25" value="<?php echo $this->persona->id_entidad; ?>" />
                                 </td>
@@ -250,7 +253,9 @@
                     </td>
                 </tr>
             </table>
-            
+            <?php
+        if ( $this->actividad->de_peso > 0) {
+            ?>
             <fieldset>
                 <legend>Diagn&oacute;stico</legend>
                 <table style="width: 100%;">
@@ -276,6 +281,9 @@
                     </tbody>
                 </table>
             </fieldset>
+        <?php         
+        } 
+        ?>
         </fieldset>
         
     </fieldset>

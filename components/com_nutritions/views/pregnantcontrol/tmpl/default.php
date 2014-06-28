@@ -15,6 +15,17 @@
         background-color: transparent;
     }
 </style>
+<script type="text/javascript">
+
+function ImprimirSel(imprimir_sel)
+{var ficha=document.getElementById(imprimir_sel);
+ var ventimp=window.open(' ','popimpr');
+ ventimp.document.write(ficha.innerHTML);
+ ventimp.document.close();
+ ventimp.print();
+ ventimp.close();}
+
+</script>
 <form id="adminForm" action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm">
     <fieldset>
         <legend>Acciones</legend>
@@ -24,8 +35,8 @@
                     <input type="button" value="Grabar" onclick="javascript:document.getElementById('task').value = 'saveAction';
                             document.getElementById('adminForm').submit();"/>
                 </td>
-                <td>
-                    &nbsp;
+                <td style="width: 25%;">
+                     <input type="button" value="Imprimir" onclick="javascript:ImprimirSel('imprimir_hoja')"/>
                 </td>
                 <td style="width: 25%;">
                     <input type="button" value="Limpiar" onclick="javascript:document.getElementById('task').value = 'cleanAction';
@@ -38,7 +49,7 @@
             </tr>
         </table>
     </fieldset>
-
+    <div id="imprimir_hoja">
     <fieldset>
 <?php
 $PregnantLink = JRoute::_('index.php?option=com_nutritions&controller=pregnant&view=pregnant&personId='.$this->persona->id_entidad.'&task=edit&Itemid=3&cid[]='.$this->actividad->id_evaluacion_gestante);
@@ -209,6 +220,7 @@ $PregnantLink = JRoute::_('index.php?option=com_nutritions&controller=pregnant&v
         </fieldset>
 
     </fieldset>
+    </div>
     <input type="hidden" name="option" value="com_nutritions" />
     <input type="hidden" name="cid[]" value="<?php echo $this->evaluacioncontrol->id_evaluacion_gestante_control; ?>" />
     <input type="hidden" name="id_evaluacion_gestante_control" value="<?php echo $this->evaluacioncontrol->id_evaluacion_gestante_control; ?>" />
